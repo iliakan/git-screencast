@@ -21,7 +21,7 @@ E.g. for the 1st video:
 - Add subtitles following <https://support.google.com/youtube/answer/6054623?hl=en>.
 - Download the subtitles and make PR them.
 
-If you commit it, add label "Need translation", so that other people know that the srt is complete.
+If you commit it, add label "Needs translation", so that other people know that the srt is complete.
 
 P.S. That "srt" file is not only for translation, it's good on its own. Allows to enable subtitles on youtube.
 
@@ -30,12 +30,12 @@ P.S. That "srt" file is not only for translation, it's good on its own. Allows t
 
 Requirements: understanding Russian, very good English.
 
-- Find an issue labelled with "Need translation", e.g. `01-01-intro`.
+- Find an issue labelled with "Needs translation", e.g. `01-01-intro`.
 - Relabel it as "In Progress: translation", to let others know that you're making it.
 - Copy `01-01-intro/01-01-intro.ru.srt` to `01-01-intro/01-01-intro.en.srt`.
 - Translate the phrases, without changing any timestamps. We'll fix the timestamps after voicing the translation.
 - Make a PR (not commit).
-- Relabel it as "Need review".
+- Relabel it as "Needs review".
 
 ## 3. Review translations
 
@@ -43,7 +43,7 @@ Requirements: native English, git knowledge.
 
 - Look at PRs, review the translation to ensure good English and good git.
 - Merge PR
-- Label the corresponding issue with `Need Voice`.
+- Label the corresponding issue with `Needs Voicing`.
 
 ## 4. Voice the screencast
 
