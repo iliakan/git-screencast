@@ -14,32 +14,12 @@ The translation process can be split into 4 parts.
 
 Requirements: understanding Russian, git knowledge.
 
-E.g for `01-01-intro`:
+E.g. for the 1st video:
 
-- Make an issue named `01-01-intro`.
 - Add label "In Progress: Russian srt", so that other people know you're working on it.
-- Create a file `01-01-intro/01-01-intro.ru.srt`.
-- Listen to the 1st screencast from the 1st part at http://learn.javascript.ru/screencast/git.
-- Put the phrases in the "srt" file.
-
-The format is:
-`[Section of subtitles number] [Time the subtitle is displayed begins] –> [Time the subtitle is displayed ends] [Subtitle]`
-
-E.g.
-```
-1
-00:02:17,440 --> 00:02:20,375
-Senator, we're making
-our final approach into Coruscant.
-
-2
-00:02:20,476 --> 00:02:22,501
-Very good, Lieutenant.
-```
-
-**If you think something is wrong, let @iliakan know, make an issue.**
-
-After the "srt" is done, commit it (if can) or make PR.
+- Go to video at (https://www.youtube.com/playlist?list=PLDyvV36pndZHkDRik6kKF6gSb0N0W995h)[Youtube].
+- Add subtitles following <https://support.google.com/youtube/answer/6054623?hl=en>.
+- Download the subtitles and make PR them.
 
 If you commit it, add label "Need translation", so that other people know that the srt is complete.
 
