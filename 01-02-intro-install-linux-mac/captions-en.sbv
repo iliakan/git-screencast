@@ -1,0 +1,38 @@
+0:00:00.250,0:00:03.500
+To use git you should install it first
+
+0:00:03.800,0:00:07.120
+If you are on linux you can just use your package manager.
+
+0:00:07.260,0:00:09.640
+No matter what package manager it is they can all install git.
+
+0:00:09.680,0:00:12.380
+You can use the most default setup, no customization is needed
+
+0:00:13.200,0:00:18.380
+running "git" command on Mac will make it install xcode tools
+
+0:00:18.760,0:00:22.460
+that contain git as well, but its version is not the latest.
+
+0:00:22.820,0:00:26.240
+Theres also an official package that you can download from the git website,
+
+0:00:26.920,0:00:29.340
+but it might not be the latest as well.
+
+0:00:29.700,0:00:34.200
+Most of the time it doesnt matter as even old git will let be able to handle most of the tasks you need.
+
+0:00:34.640,0:00:36.300
+But if we want to use the latest and greatest
+
+0:00:36.500,0:00:39.100
+then its either a Homebrew or a MacPorts.
+
+0:00:39.340,0:00:44.000
+All the default settings will do as modern installers mostly have optimal settings in place already.
+
+0:00:44.520,0:00:49.600
+Of course you'll be able to change them later, but 99% of the time defaults will have all your needs covered.
