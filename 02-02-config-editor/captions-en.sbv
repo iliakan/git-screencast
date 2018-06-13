@@ -1,0 +1,63 @@
+0:00:00.130,0:00:04.949
+another convenient feature of configs is aliases for the commands
+
+0:00:05.230,0:00:10.769
+for example, if "git config" is long to write I can make an alias for it "git c"
+
+0:00:11.380,0:00:18.299
+Right now, if I run "git c", then git will not do anything, but instead it will show me the list of commands, that as it think I might mean
+
+0:00:19.000,0:00:25.320
+But let me make a "git config --global alias.c config".
+
+0:00:25.320,0:00:29.720
+From now on "c" will mean "config". "git c --list".
+
+0:00:30.300,0:00:35.600
+Most of the time aliases are used for a longer commands. Usually commands having multiple or long flags.
+
+0:00:36.070,0:00:39.059
+For instance, let "c" be a "config --global"
+
+0:00:39.760,0:00:46.170
+And later on — "git c --list" — will give us the global settings. So "c" was substituted with the alias content.
+
+0:00:46.870,0:00:53.309
+Sometimes theres a need to make an alias for a several commands, so that they are executed one by one.
+
+0:00:53.620,0:00:56.879
+You can do it by setting the exclamation mark "!"
+
+0:00:57.460,0:01:02.309
+As a first symbol. Then it can be followed by any commands, not the git commands,
+
+0:01:02.649,0:01:05.609
+but system commands - shell commands. 
+
+0:01:05.950,0:01:12.030
+And as most of the shells allow to have a list of the commands, followed by a semicolon I've put 2 "echo" commands one after another.
+
+0:01:12.220,0:01:16.830
+Each of these will print a message. Same approach can be used to run git
+
+0:01:17.200,0:01:21.360
+Git, do something, semicolon, git, do something else
+
+0:01:22.420,0:01:29.900
+This screencast will keep the number of aliases to minimum. So that one can open any screencast video and know whats going on.
+
+0:01:30.800,0:01:36.380
+So that instead of aliases, like "c" or "sayhi" one could see a real git commands. But in the real world aliases
+
+0:01:36.490,0:01:40.710
+are used quite often, including the usage on the shell level
+
+0:01:40.930,0:01:47.339
+For example, I've opened one of the settings files of Unix shell and its a lot of aliases here as you can see. "g" for git,
+
+
+0:01:47.619,0:01:49.619
+"ga", "gaa" and so on.
+
+0:01:49.930,0:01:57.869
+One can use a preconfigured set of aliases or, probably you will make your own set of aliases or get the best ones from several sets, so that your resulting set serves you best.
