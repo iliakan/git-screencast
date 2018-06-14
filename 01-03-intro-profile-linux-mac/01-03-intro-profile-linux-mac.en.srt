@@ -1,0 +1,20 @@
+After installing git you may wish to setup your user profile settings.
+As rule you find them in your home directory in the file .profile or another similar file loaded by your git environment.
+
+Here is an example: the first environment variable sets up the language in which the git will display messages. You can use LC_MESSAGES or LANGUAGE. In this instance I chose English.
+
+The rest of this file sets up your basic command line settings. You may of course skip it if you wish to start working immediately. As a rule, this script [git-completion.bash] is provided by git and is responsible for the git commands autocomplete in the console.
+
+In my case it is found under this path, on your machine it will most likely be elsewhere. But, in the case it cannot be found anywhere you can download it from here. 
+This script [git-prompt.sh] is found under the same path and it contains the git_ps1 function which allows to add additional useful information about the current project and git to the command line.
+
+These two environment variables
+[GIT_PS1_SHOWDIRTYSTATE=true GIT_PS!_SHOWUNTRACKEDFILES=true]
+are optional. They are also described and used in this file. These are of course the most basic settings.
+
+There exist a large number of other more powerful scripts for the command line git integration written by third party developers. They can be easily found. Just google for 'git prompt' followed by the name of your terminal, for instance bash or zsh or some other.
+
+And you immediately see a bunch of options. I suggest you do not waste time on this right now, but rather watch the screencast to get a better understanding of git. I stille highly recommend you install one of those later one. They are mighty useful.
+
+In this screencast I use a script for the bash that can be found here [https://github.magicmonty/bash-git-prompt]. But in general all those scripts have similar functionality, so you can chose anyone you like.
+
