@@ -24,11 +24,11 @@ The translation process can be split into 3 parts.
 
 Когда сабтитры готовы - сохраните их с youtube (будет файл captions.sbv), переименуйте в файл типа `01-01-intro.sbv` (чтобы было понятно о каком выпуске речь) и пришлите мне на iliakan@gmail.com или как PR к https://github.com/iliakan/git-screencast.
 
-P.S. Всё, кроме команд и флагов git, в сабтитрах можно писать на русском (главное чтобы было понятно).
+P.S. Всё, кроме команд и флагов git, в сабтитрах нужно писать на русском (главное чтобы было понятно). Кавычки вокруг команд нужны только если иначе неясно, например "git add .".
 
 ## 2. Перевод сабтитров (на любой язык)
 
- (https://docs.google.com/document/d/1pzlkGp-iYiy0NBT9xA-B88x0FJ3JylmKyHDJ5NykZF4/edit?usp=sharing)[этом же файле] добавляете, `en:my@mail.ru` (или другой контакт), чтобы показать что вы перевод делаете.
+В [этом же файле](https://docs.google.com/document/d/1pzlkGp-iYiy0NBT9xA-B88x0FJ3JylmKyHDJ5NykZF4/edit?usp=sharing) добавляете, `en:my@mail.ru` (или другой контакт), чтобы показать что вы перевод делаете.
 
 После перевода присылаете мне на iliakan@gmail.com.
 
