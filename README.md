@@ -28,7 +28,7 @@ P.S. Всё, кроме команд и флагов git, в сабтитрах 
 
 ## 2. Перевод сабтитров (на любой язык)
 
- (https://docs.google.com/document/d/1pzlkGp-iYiy0NBT9xA-B88x0FJ3JylmKyHDJ5NykZF4/edit?usp=sharing)[этом же файле] добавляете, `en:my@mail.ru` (или другой контакт), чтобы показать что вы перевод делаете.
+В [этом же файле](https://docs.google.com/document/d/1pzlkGp-iYiy0NBT9xA-B88x0FJ3JylmKyHDJ5NykZF4/edit?usp=sharing) добавляете, `en:my@mail.ru` (или другой контакт), чтобы показать что вы перевод делаете.
 
 После перевода присылаете мне на iliakan@gmail.com.
 
