@@ -1,11 +1,11 @@
 0:00:00.000,0:00:02.860
-After installing the git you may want to change
+After installing git you may want to change
 
 0:00:02.860,0:00:04.600
-some settings for your profile.
+some of your profile settings.
 
 0:00:05.080,0:00:08.520
-Most of the time they are in a home directory in the "profile" file
+Most of the time they are in a home directory in the ".profile" file
 
 0:00:08.520,0:00:11.640
 or any similar file that your shell is using.
@@ -26,19 +26,19 @@ I've set mine to english.
 The rest of this file is a command line settings.
 
 0:00:27.340,0:00:31.420
-You can, of course, skip it if you want to get to work faster.
+You can, of course, skip it if you want to start working with git immediately.
 
 0:00:31.680,0:00:34.140
-This script [git-completion.bash] mostly goes as part of the git install
+This script [git-completion.bash] mostly goes as a part of a git install
 
 0:00:34.140,0:00:36.560
-and sets the autocompletion for the console commands
+and sets the autocompletion for the git console commands.
 
 0:00:37.160,0:00:40.780
-I have it here, and you, most likely will have it at some other location
+I have it here, and you, most likely, will have it at some other location.
 
 0:00:40.780,0:00:43.800
-but even if you dont have it you can download it from here.
+But even if you dont have it you can download it from here.
 
 0:00:43.800,0:00:46.660
 And this script "git-prompt.sh" is in the same place
@@ -57,13 +57,13 @@ These 2 environment variables
 are not mandatory, but they are also declared and used in this file.
 
 0:01:01.840,0:01:04.300
-These are the most basic settings
+These are the most basic settings.
 
 0:01:04.300,0:01:06.240
-There are a plenty of other
+There are plenty of other,
 
 0:01:06.240,0:01:09.480
-way more powerful scripts for command line and git efficient integration,
+way more powerful scripts for the command line and git efficient integration,
 
 0:01:09.480,0:01:11.480
 written by the 3rd party developers.
@@ -78,13 +78,13 @@ just google for "git prompt" and your shell name
 like bash or zsh or any other
 
 0:01:22.340,0:01:24.620
-And you will see dozen of results.
+And you will see a dozens of results.
 
 0:01:24.820,0:01:30.040
-But you may not spend your time on that right now, but watch the screencast and figure out git first.
+But you may not spend your time on that right now, but watch the screencast and get a better understanding of git first.
 
 0:01:30.080,0:01:34.540
-But right after that I highly recommend you to install this kind of script as it can be extremely helpful.
+Right after that I highly recommend you to install this kind of script as it can be extremely helpful.
 
 0:01:34.540,0:01:37.820
 In this screencast I use a bash script
@@ -96,4 +96,4 @@ that you can find here [https://github.magicmonty/bash-git-prompt]
 but most of the time all the scripts are quite similar,
 
 0:01:42.780,0:01:46.600
-therefor pick the one you like, whatever fits you best.
+therefore pick the one you like, whatever fits you best.
