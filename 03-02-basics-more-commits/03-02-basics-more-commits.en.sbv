@@ -1,0 +1,217 @@
+0:00:01.270,0:00:06.870
+Back to editor. Now, lets add a new "src" directory to the project.
+
+0:00:07.810,0:00:13.919
+Done. Lets try to add this directory to git using the "git add src" command.
+
+0:00:14.590,0:00:16.590
+Lets see the "git status"
+
+0:00:17.349,0:00:20.429
+Hmm, strange. No changes. Lets try "git commit"
+
+0:00:21.669,0:00:23.320
+Nothing happened.
+
+0:00:23.320,0:00:27.119
+And git is even writing that "nothing to commit, working tree clean."
+
+0:00:28.150,0:00:29.560
+What is the problem?
+
+0:00:29.560,0:00:31.509
+Thats where git behaves not as we thing it should
+
+0:00:31.509,0:00:38.879
+Due to the historical reasons git can't work with empty folders. And mostly it cant see empty directories at all.
+
+0:00:39.370,0:00:44.970
+To workaround this directory is made non-empty by putting a stub zero-sized file inside it.
+
+0:00:45.360,0:00:51.360
+its usually called ".gitkeep", so that its clear why is it needed at all. And then the directory can be added to git.
+
+0:00:51.360,0:00:58.420
+In our case we dont need this file as we are going to create a "script.js" file in our "src" directory.
+
+0:00:58.420,0:01:03.840
+Lets write some script inside. Git doesn't care what programming language is used.
+
+0:01:05.160,0:01:08.780
+In this case its javascript. Done.
+
+0:01:09.640,0:01:11.640
+And let's include this file into "index.html"
+
+0:01:12.850,0:01:14.590
+Saving the changes.
+
+0:01:14.590,0:01:17.850
+Now lets open the terminal again and type "git status".
+
+0:01:18.850,0:01:20.850
+Now the output consists of 2 parts.
+
+0:01:21.130,0:01:24.179
+Above there are changes in the files that git is tracking,
+
+0:01:24.540,0:01:29.980
+that are in the Index already. Below it shows that project has directory that git doesnt know yet.
+
+0:01:30.520,0:01:34.860
+Note, that its only showing the directory, but not the files inside it.
+
+0:01:35.040,0:01:39.220
+It is assumed that if the directory is not known to git yet, so the files inside it.
+
+0:01:39.220,0:01:44.400
+Lets add our changeset to git. For that lets use "git add ." command.
+
+0:01:44.400,0:01:48.340
+So we are giving the whole current directory to the "git add" command.
+
+0:01:48.340,0:01:51.720
+If "git add" retrieves a directory it adds all its changes to the Index.
+
+0:01:51.940,0:01:58.140
+This is very convenient if changed one file, then another, then yet another change and then just "git add ." and it adds it all.
+
+0:01:58.140,0:02:03.020
+Lets have a look at "git status".
+Thats it. Both files were added to the git.
+
+0:02:03.780,0:02:08.360
+"git add ." command that we've just used is very convenient, but it has a side effect.
+
+0:02:09.120,0:02:15.000
+The problem is that the project directory may have some other files, that we dont want to add to the repository.
+
+0:02:15.200,0:02:19.560
+E.g: I've opened the project in the other editor - WebStorm.
+
+0:02:19.560,0:02:23.740
+Im not even going to do anything here. Just open the project and go back.
+
+0:02:24.260,0:02:31.000
+Note, the work directory has a new directory ".idea". It contains the Webstorms IDE files.
+
+0:02:31.440,0:02:36.499
+If we are going to execute "git add .", then we are going to add these ".idea" files together with our changes.
+
+0:02:37.100,0:02:42.580
+But IDE related files should not be in the repository. To cancel these changes, 
+
+0:02:42.580,0:02:49.520
+we can use the command that git is telling us to use: "git reset HEAD .idea"
+
+0:02:50.240,0:02:53.500
+Git is going to drop changes for the ".idea" directory from the Index.
+
+0:02:53.620,0:02:58.400
+"git reset" is actually a very powerful command. It can rollback changes in many different cases.
+
+0:02:58.400,0:03:02.760
+We are going to have a look at it in more details in one of the next videos of our screencast.
+
+0:03:03.120,0:03:11.580
+To avoid this problem in future lets create a ".gitignore" file and put ".idea" there.
+
+0:03:11.960,0:03:17.940
+Now if I run "git status" we see the changes that were indexed previously.
+
+0:03:18.260,0:03:23.640
+We also see a new ".gitignore" file and see no ".idea", albeit its still there.
+
+0:03:23.740,0:03:27.420
+Just its in the ignore file and most git commands is going to completely ignore this directory.
+
+0:03:28.000,0:03:34.060
+Keep in mind that even if something is in the ignore file one can add it to git Index,
+
+0:03:34.120,0:03:37.800
+but just adding "--force" or shorter "-f" flag to the "git add" command.
+
+0:03:37.800,0:03:44.020
+It can be convenient if, for example, the file you need to add is deep inside the directory that is ignored.
+
+0:03:44.020,0:03:49.740
+And when the file is added to the Index all its changes are going to be tracked, independently of its presence in ".gitignore".
+
+0:03:49.740,0:03:56.040
+Further on we are going to work in the same way with files that were added like that. No additional flags are needed.
+
+0:03:56.600,0:04:02.020
+You can find more information on ".gitignore" in the corresponding issue of this screencast.
+
+0:04:02.760,0:04:10.099
+To give you some details on what the git Index is Im going to open the editor and put some changes to the "index.html" file,
+
+0:04:10.260,0:04:13.639
+actually Im just calling the "hello" function that is declared in the included script.
+
+0:04:14.250,0:04:18.410
+Now if you type "git status" you can see a very interesting thing.
+
+0:04:18.780,0:04:24.380
+Index as it is shown in the first part of the output has exactly the same changes that we've added previously.
+
+0:04:24.720,0:04:26.749
+That means that when we add a file to the Index,
+
+0:04:26.980,0:04:32.780
+it saved not only its name, but the whole contents. And when you run the "git commit" 
+
+0:04:33.000,0:04:40.700
+the repository added it, exactly what we've added to the Index. But the changes done afterwards are in the work directory only.
+
+0:04:41.120,0:04:46.680
+In this section we list the files that has unindexed changes.
+
+0:04:46.680,0:04:51.640
+In our case we've jsut changed "index.html" and so we have it here.
+
+0:04:52.020,0:04:58.880
+And finally in the third part we have files that git is not tracking yet. ".gitignore" was not yet added to the index, therefore its here.
+
+0:04:59.820,0:05:05.260
+To make a commit including all the latest changes lets add them to the Index. Like that.
+
+0:05:05.940,0:05:07.530
+Now lets "git status".
+
+0:05:07.530,0:05:09.347
+No unindexed changes.
+
+0:05:09.347,0:05:16.160
+Ok, its time to save everything we have in the repository. To do that lets use "git commit" with "-m" flag.
+
+0:05:16.160,0:05:22.120
+"-m" allows us to write the commit comment right away, without opening the editor. Its very convenient when the message is short.
+
+0:05:22.380,0:05:25.040
+Like "fixed this issue"
+
+0:05:25.820,0:05:29.140
+Or in our case: "added script".
+
+0:05:29.340,0:05:33.060
+Executing, done. Our changes are finally saved to the repository.
+
+0:05:33.060,0:05:41.280
+And heres a new commit identifier. By it we can get the current state of the project files, that we've just saved at any time.
+
+0:05:41.480,0:05:49.200
+Now if I check "git status" we can see that its all clean, except for the ".gitignore". Lets add it to the repository. "git add .gitignore".
+
+0:05:50.550,0:05:53.090
+Here it is in the Index and "git commit -m'Add gitignore'".
+
+0:05:53.789,0:06:01.339
+Done. Now you may ask a question:"Why havent you just added '.gitignore' the previous commit? Why save it separately?"
+
+0:06:01.820,0:06:06.300
+The answer is crucial as it explains how to use git correctly.
+
+0:06:06.300,0:06:11.400
+I hope it will be clear for you after watching the next video of this screencast.
+
