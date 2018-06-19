@@ -1,42 +1,42 @@
 00:00 Hello, everyone. Welcome to the git screencast.
 
-This issue is an introductory video for those who didnt use git yet.
+This issue is an introductory video for those who haven't used git yet.
 
 00:12 Most likely you have already heard that Git is a Version Control System.
-To say it in other words - its a storage, a database of a project development history, that contains all the versions of its files,
-from the very old ones to current.
+In other words - its storage, a database of a project development history, that contains all the versions of its files,
+from the oldest to the most recent.
 
-00:27 We add the initial version of our files.
-And then, when we change anything in any of the added files we add the changed version to git, so git keeps track of the file's versions.
+00:27 First, we add the initial version of our files.
+And then, when we change anything in any of the added files, we add the changed version to git, so git keeps track of the file's versions.
 
-00:36 The best part of it is that we can always get a peek into it, see whats inside and restore any previous version of any of the files.
+00:36 The best part of Git is that we can always peek and see whats inside. Then we can restore the files to any previous version.
 
-00:45 The other useful feature is that we can also share our data with other developers.
+00:45 Another useful feature is that we can also share our data with other developers.
 
 00:52 For instance we have a team of Alice, Jeff and Bob. Each one of them has git installed.
-Each one of them are working on their part of the project. Once any of them is done with their part, they can easilly share their changes with their colleagues as if they have just copied their files over.
+Each one of them are working on their part of the project. Once any of them is done with their part, they can easilly share their changes with their colleagues as if they had just copied their files over.
 
-01:06 But git is so much  better, than copying the files. As it can automatically detect the collision and merge the changes together. So if 2 developers have changed the same file git will detect the conflict early, so they can resolve it.
+01:06 But git is so much better than copying the files, as it can automatically detect the collision and merge the changes together. So if 2 developers have changed the same file, git will detect the conflict early so it can be resolved.
 
 01:19 In most cases git will even resolve the conflict automatically.
 Git is a Distributed Version Control System because it doesnt need a central server. Each developer has his or her local copy of git repository that keeps track of the history of the project.
 
-01:35 Once developer changes the file, he or she first of all records these changes in his or her own, local git repository.
-Later he can catch up with his colleagues by getting their latest changes and sharing his changes.
+01:35 Once a developer changes the file, they record these changes in their own, local git repository.
+Later, the developer can catch up by getting their colleagues latest changes and sharing their own changes.
 
 
 01:45 Albeit, most of the time there is a central repository for convenience.
 One can upload his or her latest changes to and get the latest version from this central repository or server.
 So the server is just a well-known node that is used to synchronize the changes in a convenient manner.
 
-02:00 Most of the things are still done locally. So you can go to another country with bad or no connection to the server and still be able to make your changes to the project, check the history and see all the previous changes of the other team members, add new files or restore the previous version of any of the files. Once you are back to the civilization you can synchronize with the server. Getting the latest changes of your peers and checking whats they've been up to.
+02:00 Most of the things are still done locally. So you can go to another country with bad or no connection to the server and still be able to make your changes to the project, check the history and see all the previous changes of the other team members, add new files or restore the previous version of any of the files. Once you are back to civilization, you can synchronize with the server. Getting the latest changes of your peers and checking what they've been up to.
 
-02:21 Last, but not least, git is a reliable system. Lets assume the following scenario: We have some files on our disk. And something went wrong. The disk was damaged somehow and the files got corrupted. If we have tonnes of files we might not even notice anything at first.
+02:21 Last, but not least, git is a reliable system. Lets assume the following scenario: We have some files on our disk, and something went wrong. The disk was damaged somehow and the files got corrupted. If we have tons of files, we might not even notice anything at first.
 
-02:36 But git doesnt simply having a copies of our files. It has a checksum for everything. And as git is also a distributed system and every deveoper has a copy of all the changes of every other developer. We have a very reliable backup of everything out of the box, automagically! If I have damaged my files somehow I'll be able to easilly recover them from my colleagues copy or by just synchronizing with the server.
+02:36 But git doesnt simply have a copy of our files. It has a checksum for everything. And since git is also a distributed system and every deveoper has a copy of all the changes of every other developer, we have a very reliable backup of everything out of the box, automagically! If I have damaged my files somehow I'll be able to easilly recover them from my colleagues copy or by just synchronizing with the server.
 
-03:00 Git can also help you against malicious programms that are intentionally trying to damage your data, like cryptolockers or viruses. Even if you've been hacked and hacker made some tricky changes to your files, local checksum will keep track of that, so these changes cant pass through unnoticed. One cant just change files, without being noticed as checksum will not allow it. And one cant easilly change the checksum as checksums are dependent on each other and one will have too much to change. In this scenario once you will try to synchronize with your peers you'll end up with a synchronization conflict. So we'll detect these changes and will be able to track them down to the malicious changes.
+03:00 Git can also help you against malicious programms that are intentionally trying to damage your data, like cryptolockers or viruses. Even if you've been hacked and the hacker made some tricky changes to your files, local checksum will keep track of that, so these changes can't pass through unnoticed. One can't just change files without being noticed, as checksum will not allow it. And one can't easily change the checksum, as checksums are dependent on each other and one will have too much to change. In this scenario, once you try to synchronize with your peers, you'll end up with a synchronization conflict. So we'll detect these changes and will be able to track the malicious changes.
 
-03:32 To put it in simple words: One can trust git!
+03:32 To put it simply: One can trust git!
 
 03:37 Apart of that there are a number of other git features and useful internet services. You'll learn all of it with time, but let's start with installing git first.
