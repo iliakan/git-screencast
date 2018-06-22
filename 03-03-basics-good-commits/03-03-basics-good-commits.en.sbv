@@ -1,0 +1,200 @@
+0:00:00.069,0:00:07.078
+Hello everyone! Earlier we had a look at the 2 step process of saving data into git. That is we first stage changes with "git add"
+
+0:00:07.290,0:00:13.170
+and then commit those changes with "git commit". However, one could wonder if there is a shortcut?
+
+0:00:13.420,0:00:18.560
+That is omit "git add" and commit changes directly into the repository. In simple cases there is.
+
+0:00:19.120,0:00:24.900
+Let's have a look at a typical situation. I open a project with a blank status, that is with no changes.
+
+0:00:25.500,0:00:30.040
+I then proceed to modify a few files. Let's say I made a change here and here.
+
+0:00:30.580,0:00:32.580
+Renamed hello function to helloGitty.
+
+0:00:33.180,0:00:36.960
+Now, if we look at the status, we see our unstaged changes.
+
+0:00:36.960,0:00:44.180
+In order to commit these changes we can type "git commit" with "--all" option or "-a" for brevity. And let's add a commit message here as well.
+
+0:00:44.520,0:00:48.400
+"-m" could be used separately or together like in this instance.
+
+0:00:48.820,0:00:53.520
+flag "-a" would force the commit command to take all changes from the working directory,
+
+0:00:53.980,0:00:57.080
+stage them and commit to the repository.
+
+0:00:57.080,0:01:04.000
+We end up doing two actions with one command: staging and committing.
+At the same time there is one serious restriction:
+
+0:01:04.000,0:01:15.320
+"-a" ignores files not tracked by git. That is if I create a file named, let's say, "new.html" and then execute "git status" - here is the new file.
+
+0:01:15.320,0:01:20.640
+"git commit -a". You see, nothing happened. That is because the file is not tracked.
+
+0:01:21.060,0:01:28.500
+In other words flag "-a" adds to commit a preliminary step at which it stages all changes from the working directory,
+
+0:01:28.720,0:01:33.179
+but only for those files that are already in the index. In our case for these.
+
+0:01:33.549,0:01:39.389
+It then makes a usual commit with the new index. It is very useful when you start working with a project with a fresh status,
+
+0:01:39.729,0:01:43.739
+made chages to existing files and quickly committed your changes.
+
+0:01:45.610,0:01:50.099
+I reverted previously made changes. Let's have a look at another case.
+
+0:01:50.350,0:01:56.880
+Let's suppose we already have changes in our project. Something goes on here, there,
+
+0:01:57.070,0:02:00.029
+may be some changes are already staged.
+
+0:02:00.720,0:02:05.280
+And let's suppose that we need to open a third file and add some changes in it.
+
+0:02:05.400,0:02:10.820
+For instance, we want to ignore all log files and commit these changes right away because they are very important,
+
+0:02:11.050,0:02:14.399
+fix a typo, and must appear in the project immediately.
+
+0:02:14.940,0:02:22.380
+Here is the situation: I have changes in my working directory, I have staged changes, but I only want to commit these changes here.
+
+0:02:22.980,0:02:27.020
+There is nothing easier: "git commit", various parameters
+
+0:02:27.300,0:02:33.440
+and a path. In our case it is a single file. But you can indicate many paths, including directories, and voila.
+
+0:02:33.960,0:02:39.140
+Commit takes changes from the given paths, stages them and saves into our repository.
+
+0:02:39.720,0:02:45.560
+Note well that if we have a look at "git status" once again you will notice that all other changes remained as they were.
+
+0:02:45.560,0:02:47.560
+Commit only worked for changes under the given path.
+
+0:02:47.740,0:02:53.820
+The same restriction applies here as for the flag "-a": files not tracked by git will be ignored.
+
+0:02:54.250,0:02:58.589
+So, if I add once again a file named "new.html"
+
+0:02:59.140,0:03:03.680
+and try to call "git commit" on it, nothing would happen as you can see.
+
+0:03:04.480,0:03:10.280
+We had a look at the "-a" flag for staging all changes for tracked fiels.
+
+0:03:10.840,0:03:18.060
+Indicated paths to the files that must be committed but it only works for files tracked by git.
+
+0:03:18.520,0:03:23.620
+One may wonder why it only works for tracked files?
+It is very simple.
+
+0:03:23.880,0:03:27.580
+It is done on purpose to avoid unintentionally adding unwanted files to the repository.
+
+0:03:27.910,0:03:32.340
+We do not want any temporary files or results of a build. Anything could happen.
+
+0:03:32.860,0:03:38.999
+On the other hand sometimes we want to commit all changes made including untracked files.
+
+0:03:39.790,0:03:46.409
+There is no single command for this in git but we could create an alias like this.
+
+0:03:47.380,0:03:52.340
+Its usage is very simple: we go to the required directory and call "git commit --all"
+
+0:03:52.340,0:03:57.820
+We could add additinal parameters. They would be appened to the end of our alias,
+that is for the command "git commit"
+
+0:03:57.900,0:04:02.980
+This would add the content of the current directory to the index and call "git commit" on it.
+
+0:04:02.980,0:04:08.520
+Another variation of this recipe is "git add -A"
+
+0:04:09.120,0:04:15.020
+This flag is rarely used. If we compare it to with the previous example, it only add the current directory.
+
+0:04:15.140,0:04:19.780
+For instance if we go to the src subdirectory the "." would stand for this directory.
+
+0:04:20.350,0:04:23.850
+Where as "git add - A", whereever we might call it from,
+
+0:04:24.220,0:04:28.499
+would stage all changes starting from the root of the project.
+
+0:04:29.200,0:04:31.200
+Bam - everything is staged.
+
+0:04:31.820,0:04:38.520
+And if you bothered to call "git status" you would see that not only existing files have been staged but also files that were not tracked previously.
+
+0:04:38.940,0:04:43.560
+The complete exaple of using this alias would look like this: "git commit --all"
+
+0:04:43.560,0:04:46.440
+followed by additional parameters for "commit".
+
+0:04:46.440,0:04:52.520
+Note well that you should not normally do as I just did because I took all changes,
+
+0:04:52.780,0:04:55.440
+mixed them up in one big commit and saved to git.
+
+0:04:56.460,0:05:01.220
+Developers who do like this, are sometimes jockingly said to be using git like a time machine.
+
+0:05:01.380,0:05:06.740
+We could always roll back to previous commits, but it would be very difficult to navigate through the development process.
+
+0:05:06.910,0:05:14.489
+If we however know for sure that our changes form a good commit then why not? This alias is quite pertinent. We could use it.
+
+0:05:15.340,0:05:19.360
+We had a look at three ways to commit without an explicit call to "add".
+
+0:05:20.030,0:05:27.069
+The first one: the "-a" flag automatically stagies changes in the working directory but only in those files that
+
+0:05:27.350,0:05:33.699
+were already tracked by git. It is very useful when we start working with a project with a fresh status, made a few changes and want to commit them quickly.
+
+0:05:34.550,0:05:40.210
+Second one: explicitly provide paths to the "commit". The result would be the same but only for the give paths.
+
+0:05:40.520,0:05:45.759
+It is very useful when we have several unstaged changes in our project but we only want to commit a few files.
+
+0:05:46.340,0:05:48.340
+Git would ignore other paths.
+
+0:05:48.830,0:05:54.370
+And, finally, if we wanted to commit untracked files we could create an alias.
+
+0:05:54.800,0:05:59.020
+This one for committing changes in a given directory and this one - for the whole project.
+
+0:05:59.240,0:06:05.379
+We must always be careful not to commit unnecessary files but in trivial situations such aliases could be useful.
