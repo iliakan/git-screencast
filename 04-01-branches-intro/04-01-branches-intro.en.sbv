@@ -1,0 +1,178 @@
+0:00:06.190,0:00:07.720
+Hello, everyone!
+
+0:00:07.720,0:00:13.799
+Branching is one of the most important concepts of modern git. Branch is actually
+
+0:00:14.139,0:00:19.169
+an isolated flow of development, that can have its own commits, so that they are invisible to other branches.
+
+0:00:19.420,0:00:25.500
+In this video I'm going to briefly show its usage and starting from the next one we are going to have some practical examples
+
+0:00:26.769,0:00:29.159
+Branches are with us from the very beginning of the project
+
+0:00:29.500,0:00:35.369
+As soon as we make our first commit git creates the very first branch which is called master.
+
+0:00:36.190,0:00:42.180
+Firther on we can ignore that and make more and more commits, actually, develop our project.
+
+0:00:42.700,0:00:45.599
+Now imagine for a moment that we have an idea of a cool feature.
+
+0:00:45.969,0:00:51.389
+But the feature is quite big and needs time to accomplish so we can only work on it from time to time
+
+0:00:51.789,0:00:58.589
+and till its done, we dont want to mix it into the main stable code of the project.
+
+0:00:58.809,0:01:04.139
+This is exactly where branches are extremely helpful, as we can stay in the same project,
+
+0:01:04.330,0:01:08.519
+same repository, create a new branch and call it "feature"
+
+0:01:08.890,0:01:13.290
+git has a concept of current branch, the branch you are working in at the moment
+
+0:01:13.869,0:01:17.579
+So we are making this "feature" branch our current branch and committing all the code into it.
+
+0:01:18.070,0:01:24.839
+First commit, second commit and so on. Git allows us to easilly switch between the branches so we can go back to our
+
+0:01:25.030,0:01:32.309
+main "master" branch, that corresponds to the previous state of the project, before this new feature is committed
+
+0:01:32.710,0:01:36.809
+and continue the development. Then we can add some new feature code 
+
+0:01:37.329,0:01:39.329
+and switch back to master.
+
+0:01:39.610,0:01:45.599
+If new idea didnt work out we can always delete the whole "feature" branch, without ever affecting 
+
+0:01:45.790,0:01:50.309
+the "master" branch, where all the stable code is residing. But I hope, that most of the time
+
+0:01:50.560,0:01:56.939
+new changes are great and when we are done with the new feature we can merge it to our stable "master" branch
+
+0:01:57.460,0:02:03.689
+This kind of development approach when we have a separate branch per feature  and merge it to stable when its ready, 
+
+0:02:04.360,0:02:06.360
+is called "feature branching"
+
+0:02:06.520,0:02:11.940
+We can have multiple branches, where we develop different features in parallel
+
+0:02:12.500,0:02:14.250
+like "feature" and "another feature"
+
+0:02:14.250,0:02:16.250
+Different branches can be developed by different people
+
+0:02:16.470,0:02:23.330
+e.g I'm working on a "feature" and my colleague is working on "another-feature" and we dont collide with each other, because each one of us is developing in their own branch
+
+0:02:23.670,0:02:29.360
+But if I want to check what was my colleague been up to I can easilly switch to his branch
+
+0:02:30.090,0:02:37.580
+get through the code, maybe, even fix something or leave a comment and then go back. So, the concept of branches prooves to be very
+helpful for teams.
+
+0:02:38.520,0:02:41.059
+Of course, its not the only way to use branches
+
+0:02:41.430,0:02:46.820
+another common approach is to use branches to keep several parallel versions of the project
+
+0:02:48.270,0:02:51.829
+Same as previous example, making a commit, another commit
+
+0:02:52.260,0:02:56.000
+then we decide to release, and there are a lot of things todo
+
+0:02:56.160,0:03:03.229
+so we have to decide which ones are going to be the part of release and which ones are to be the features of the next releases.
+
+0:03:03.480,0:03:11.420
+We are making a new branch for the new release and call it "1.0". From now on our development is split into 2 branches.
+
+0:03:12.060,0:03:17.839
+We are going to work on new features in the "master" branch and "1.0" will host all the features that
+
+0:03:18.030,0:03:21.049
+are making it into the release.
+
+0:03:21.840,0:03:22.620
+Now I'm
+
+0:03:22.620,0:03:30.230
+switching to the "1.0" branch or give it to my colleague and they commit into it, another one, making it ready for the release
+
+0:03:30.630,0:03:37.189
+And as git allow us to switch between the branches there can be an ongoing development of new features in "master"
+
+0:03:37.709,0:03:40.129
+Of course we can have an issue that existed 
+
+0:03:40.590,0:03:47.479
+before we split and we have to fix it in both "1.0" and "master".
+
+0:03:47.850,0:03:52.159
+Lets fix the issue in one of the branches. Most of the time its fixed in "master" first
+
+0:03:52.500,0:04:00.320
+For example, lets assume this commit is our fix. Then git allows us to do so-called "cherry-pick", that is taking any commit
+
+0:04:00.510,0:04:08.269
+and apply it to the other branch, like "1.0" in our case. In the end the issue will be fixed in both branches and we continue
+
+0:04:08.610,0:04:13.639
+the development of new features. But now its time to release a version "2.0".
+
+0:04:14.400,0:04:16.700
+We are making a separated branch for it
+
+0:04:17.070,0:04:24.409
+where we polish the features that are going to be a part of the version 2.0. And master will have all the new features for later releases
+
+0:04:24.720,0:04:26.139
+and so on
+
+0:04:26.139,0:04:30.989
+So, branches allow to have several versions of the project in the same repository,
+
+0:04:31.990,0:04:39.359
+switch between them and develop each feature independently. We can create any number of branches starting with any commit
+
+0:04:39.789,0:04:42.719
+for example: branch "1.0" can have a "1.1" branch
+
+0:04:44.020,0:04:51.210
+these branches as above are called the "release branches" and this is another example of how one can use the branches
+
+0:04:51.430,0:04:53.430
+apart of the general usage we saw earlier
+
+0:04:54.160,0:04:58.709
+Its important to understand, that git on its own doesn't require one to create  branches at all
+
+0:04:59.680,0:05:03.989
+some projects can only use feature-branches and some can only use release branches
+
+0:05:04.539,0:05:10.529
+some can use both. Theres a well-known strategy of how to use both approaches together known as "git flow"
+
+0:05:10.960,0:05:18.900
+You can use all of this and for that we are getting to some practical usage of git branching on the example of
+
+0:05:19.030,0:05:21.030
+the particular git repository
+
