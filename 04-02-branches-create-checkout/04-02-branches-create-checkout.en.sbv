@@ -1,0 +1,295 @@
+0:00:00.000,0:00:05.520z
+Now when you have an overview of branching, lets have a look at some practical usage of it
+
+0:00:06.100,0:00:10.710
+Im in a "project" directory and we have an "index.html" file.
+
+0:00:11.200,0:00:17.850
+lets put the editor and the terminal on the left, and while I work on a project you'll see how the repository is going to change
+
+0:00:18.670,0:00:25.260
+So, first, I will, of course create a repository with "git init" and add "index.html" to it.
+
+0:00:25.810,0:00:30.929
+right after the first commit is made git will create a default branch which is called "master"
+
+0:00:31.300,0:00:38.550
+from technical perspective branch is a special link to a commit, where you can even see it if you open ".git" directory 
+
+0:00:39.070,0:00:43.529
+and see "refs" -> "heads", here, its a "master" branch
+
+0:00:43.840,0:00:48.090
+literally this small file and now it referrs to a commit with this identifier
+
+0:00:48.460,0:00:54.000
+this is a full identifier of our first commit. Its 40 digits long
+
+0:00:54.460,0:00:59.759
+and if we look at the output of the commit command we can see the first digits of this identifier
+
+0:01:00.579,0:01:05.969
+this way of checking the branches, by checking the ".git" directory is unconventional
+
+0:01:06.150,0:01:10.109
+because its not very reliable, as branches are in this directory only at the very beginning
+
+0:01:10.780,0:01:16.500
+and git is packing its data after a while by turning it into a special format and putting in another place
+
+0:01:16.900,0:01:21.989
+So you might not find it here and to check for available branches one should use the "git branch" command
+
+0:01:22.600,0:01:27.360
+or "git branch -v", to see the branch and the commit information its pointing to
+
+0:01:27.939,0:01:33.089
+The identifier here is abbreviated, but git allows us to use both full and abbreviated
+
+0:01:33.610,0:01:37.110
+identifiers, but the shorter ones should consist of 4 or more first digits,
+
+0:01:37.659,0:01:43.319
+so that git could uniquely identify the commit
+
+0:01:43.659,0:01:48.569
+so that at right I have these abbreviated identifiers
+
+0:01:49.270,0:01:54.119
+There is one more important file in the ".git" directory that is called "head". 
+
+0:01:55.090,0:01:58.680
+"head" is used by git repository to understand what branch are we at now
+
+0:01:59.710,0:02:05.710
+as we can switch between the branches and "head" is actually pointing to the current branch. Now we are in the "master" branch.
+
+0:02:06.560,0:02:12.280
+Technically "head" could point to a commit, but its a special case and an extremely rare one, we'll have a look at it later
+
+0:02:12.620,0:02:14.770
+Most of the time its a branch, like here
+
+0:02:15.200,0:02:16.489
+now lets close
+
+0:02:16.489,0:02:20.859
+the ".git" directory. I'll go back to it from time to time so we could better understand how things are working behind the scenes
+
+0:02:20.989,0:02:24.999
+but you wont need it in your day-to-day job.
+
+0:02:25.880,0:02:32.919
+Lets continue with our development, make a new file, like "script.js" and add a small function here
+
+0:02:36.620,0:02:39.009
+add new script to "index.html" and
+
+0:02:42.110,0:02:44.110
+add our changes to the repository
+
+0:02:47.120,0:02:49.509
+now have a look at the right side of the screen
+
+0:02:50.209,0:02:56.799
+when commit is done, git checks where is "head" pointing to. "head" points to "master"
+
+0:02:57.350,0:03:00.249
+and "master" contains the identifier of our first commit
+
+0:03:00.920,0:03:05.350
+this way git figures our where are we now and 
+
+0:03:05.780,0:03:13.540
+parent info is written to the new commit. In other words parent is the one we used to create our commit, which is a child one
+
+0:03:13.670,0:03:15.670
+this one
+
+0:03:16.400,0:03:18.549
+right after our new commit is created
+
+0:03:19.220,0:03:24.429
+link to the master is switched to it, so literally new identifier is written to master.
+
+0:03:24.739,0:03:32.349
+Commit to which the branch is pointing called a "HEAD", so in this case our last commit is the HEAD of the master branch.
+
+0:03:32.810,0:03:37.449
+If we print the list of branches with "-v" we can see that the "HEAD" is updated
+
+0:03:38.000,0:03:43.359
+Lets make another change and create a "sayBye" function to complement "sayHi" function.
+давайте сделаем еще изменения в дополнение к функции "sayHi" создадим функцию "sayBye"
+
+0:03:44.150,0:03:48.100
+Now if I make a new commit exactly the same thing will happen
+
+0:03:49.850,0:03:56.320
+have a look at it here, on the right, we have a new commit and link to the master is moved to it
+
+0:03:56.660,0:04:00.850
+We could keep committing it further, but imagine we have a new idea
+
+0:04:01.310,0:04:06.399
+which implementation requires to create a new branch, that we will do using "git branch" comand
+
+0:04:06.590,0:04:11.350
+and this time we give it a name of the new branch, lets call it a "feature".
+
+0:04:12.400,0:04:17.400
+Branch is ready, if we have a look at our ".git" directory we can see it
+
+0:04:18.340,0:04:19.570
+here it is
+
+0:04:19.570,0:04:26.820
+new branch is now pointing to the same commit as master, see, so that new branch creation is a really fast thing to do for git
+
+0:04:27.130,0:04:29.579
+just a new link to commit is created
+
+0:04:30.669,0:04:33.598
+our next step is to switch to new branch
+
+0:04:34.090,0:04:39.810
+for that we need to update the "head". Now its like that. To switch we have to use "git checkout"
+
+0:04:40.440,0:04:42.440
+and the name of the branch after that
+
+0:04:42.639,0:04:49.019
+Here we go, perfect. As you see the "head" link was changed, now we are on a new branch and lets make some work here
+
+0:04:49.419,0:04:51.419
+Lets close the ".git" directory
+
+0:04:51.520,0:04:55.710
+and make a new function in a "script.js" file and call it something like "work"
+
+0:04:57.370,0:04:59.370
+add it to the repository
+
+0:05:01.870,0:05:06.060
+have a look at the image on the right, new commit was created
+
+0:05:06.430,0:05:13.410
+as current branch or the one to which head points to is "feature" the pointer was moved to "feature"
+
+0:05:14.139,0:05:19.288
+new commit identifier was added to "feature" while master branch remained the same
+
+0:05:20.530,0:05:25.019
+Lets check the current state of the branches wth "git branch -v" and
+
+0:05:25.659,0:05:31.799
+we see that we have 2 branches and the "*" symbol is pointing to the current one and the current one points to the new commit
+
+0:05:33.250,0:05:38.070
+Lets make something else, like call our new function in the "index.html".
+
+0:05:43.000,0:05:45.000
+Saving the changes and
+
+0:05:45.970,0:05:48.779
+we have another commit of the "feature" branch
+
+0:05:49.660,0:05:51.660
+Of course I want to stress it once again
+
+0:05:52.240,0:05:56.820
+that technically the branch is only a link to a single commit, but
+
+0:05:57.250,0:06:04.890
+we say that commits belong to the branch or are inside the branch of all commits that are having its parents listed in the chain of parents
+
+0:06:05.200,0:06:09.059
+As you can see, right now all the commits are in the "feature" branch
+
+0:06:10.210,0:06:17.489
+The sense of it is very simple. All of these contain changes that led to the current state of the "feature" branch.
+
+0:06:18.190,0:06:25.019
+And first 3 commits also belong to the "master" branch and form the state of the project in the "master" branch
+
+0:06:26.950,0:06:32.849
+Lets continue the development. We can work on the "feature" branch further, but its quite possible that till we are done with it
+
+0:06:33.070,0:06:40.499
+we'll have to go back to the "master" branch to add some changes there. We use "git checkout" command to switch the branch
+
+0:06:40.919,0:06:44.909
+in this case we are in a "feature" and "git checkout master" will do 2 things:
+
+0:06:45.460,0:06:49.260
+first - it will change the link to the current in the "head" and second - 
+
+0:06:49.660,0:06:57.029
+will move the files from the master branch to the project directory in the state we left them
+
+0:06:57.280,0:06:59.669
+while we made our previous commit, to which master is pointing
+
+0:07:00.370,0:07:06.060
+You see, the "head" moved and the file in the editor got changed. Now we have
+
+0:07:06.490,0:07:10.890
+the "index.html" and "script.js" from the master branch in the working directory. We can go back from the "master" branch
+
+0:07:11.530,0:07:18.630
+If we change our mind, and again we can see in the editor, that files were restored from the "feature" branch. Its quite straight forward as you can see,
+
+0:07:19.600,0:07:22.109
+using the "git checkout" we can switch between
+
+0:07:22.479,0:07:29.669
+the work in the "feature" branch and the main master branch as changes done to "feature" are fading away on checkout.
+
+0:07:30.040,0:07:37.080
+And of course in the master we can go on with development and the changes there are going to fade away if we switch back to "feature".
+
+0:07:37.270,0:07:44.609
+So as these are only the references to commit they play a role of the isolated flows of development
+
+0:07:45.400,0:07:50.970
+Lets move further and Im in the "master" branch again and Im going to make some changes here
+ну что ж пойдем дальше сейчас я снова на ветке мастер и собираюсь внести кое-какие исправления
+
+0:07:51.310,0:07:58.280
+while they are not ready Im going to isolate them from the main development flow, extracting to their own branch and call it a "fix"
+
+0:07:59.040,0:08:04.670
+the "-b" in the "checkout" command means that we have to create a new branch and switch to it immediately
+
+0:08:04.980,0:08:11.659
+so its same as if I ran 2 commands: "git branch fix" and "git checkout fix" then.
+
+0:08:12.870,0:08:19.190
+Lets run, so, we've made a new branch, which is a commit pointer named "fix" and
+
+0:08:19.590,0:08:27.320
+checkout switched the "head" to it, while both "fix" and "master" are pointing at the same commit right now. Lets even have a look
+
+0:08:27.510,0:08:35.030
+"git branch -v" see, their files are the same and now, while at "fix" Im making my changes
+
+0:08:35.610,0:08:40.280
+previously, when I made a "script.js" I made the functions but forgot to call them
+
+0:08:41.130,0:08:45.770
+so lets add the "sayHi()" call to the "index.html"
+
+0:08:46.500,0:08:48.500
+Looks great!
+
+0:08:49.050,0:08:51.050
+Saving the changes in the repository
+
+0:08:52.020,0:08:54.509
+and now I've decided to call "sayBye()" as well
+
+0:08:56.590,0:08:58.590
+one more commit
+
+0:08:59.170,0:09:03.569
+Lets note that new commits were moving the "fix" pointer as "head" is pointing to it now.
