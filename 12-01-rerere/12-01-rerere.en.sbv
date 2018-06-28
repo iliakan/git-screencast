@@ -1,0 +1,424 @@
+0:00:00.360,0:00:03.040
+  There are situations when conflict already resolved
+
+0:00:03.040,0:00:05.865
+have to be resolved once again. For example
+
+0:00:05.865,0:00:09.045
+we start to rebase. Place some commits over commits.
+
+0:00:09.045,0:00:12.015
+Resolve conflicts from them. And here happens that we have to --abort the rebase.
+
+0:00:12.015,0:00:14.705
+ Thus when we rebase again
+
+0:00:14.705,0:00:17.445
+will emerge the same conflicts. 
+
+0:00:17.445,0:00:20.485
+Or if we've just merge but need to revert it. 
+
+0:00:20.485,0:00:22.935
+To make some  minor needed changes.
+
+0:00:22.940,0:00:25.560
+ After which we try once again to merge but end up with same conflicts.
+
+0:00:25.560,0:00:28.540
+Or a more tricky example.
+
+0:00:28.680,0:00:32.500
+If we pull up and apply forward changes to branch by merges. 
+
+0:00:32.720,0:00:34.660
+But those merges contained conflicts.
+
+0:00:34.665,0:00:37.625
+After which we decide to rebase the branch.
+
+0:00:37.625,0:00:40.345
+Then presumably you'll meet same conflicts.
+
+0:00:40.600,0:00:46.860
+You can easily find yourself situations in development process where you have to resolve conflicts in repeat, better than I'll list them for you. 
+
+0:00:47.060,0:00:49.680
+Alas,  nobody likes to do same things twice.
+
+0:00:49.900,0:00:52.825
+Happily ever Git is able to do it automatically.
+
+0:00:52.825,0:00:55.940
+With help of mechanism called 'rerere'.
+
+0:00:56.000,0:01:00.440
+ Shortened from REuse, REcorded, REsolution.
+
+0:01:00.660,0:01:04.995
+When you enable this mechanism. Git will start to remember how was conflicts were resolved.
+
+0:01:04.995,0:01:07.565
+So even this conflict pops up one more time
+
+0:01:07.565,0:01:10.595
+he will be resolved automatically.
+
+0:01:10.595,0:01:13.205
+For example let's take the repository we worked before
+
+0:01:13.385,0:01:16.115
+and foremost switch on the 'rerere' mechanism.
+
+0:01:16.120,0:01:19.060
+git config rerere.enabled true
+
+0:01:19.320,0:01:22.280
+Now let's merge to master branch. 
+
+0:01:22.540,0:01:26.420
+We see a conflict. I'd like to draw your attention to the conflict message
+
+0:01:26.820,0:01:30.760
+which appears only If 'rerere' is working. And means
+
+0:01:30.760,0:01:34.620
+that 'rerere' mechanism remembered current state for index.html
+
+0:01:34.800,0:01:36.380
+before the conflicts is resolved.
+
+0:01:36.520,0:01:39.240
+Now, let's fix our conflict in editor.
+
+0:01:40.740,0:01:43.020
+This is how our index.html looks like. 
+
+0:01:43.080,0:01:46.655
+We add changes: git add index.html , and finish the merge: git commit --no-edit. Ready.
+
+0:01:46.655,0:01:49.625
+Here we see one more message. 
+
+0:01:49.625,0:01:52.475
+Which appear again only with help of 'rerere' enabled.
+
+0:01:52.480,0:01:56.620
+Which means exactly how Git remembers the conflict resolution.
+
+0:01:56.840,0:01:59.680
+For now let's imagine I've found out that something goes wrong.
+
+0:01:59.685,0:02:01.425
+And I merged too early.
+
+0:02:01.825,0:02:04.525
+Well, I have to cancel it.
+
+0:02:04.525,0:02:07.260
+And I will do it by going 1 commit backward: 
+git reset --hard @~
+
+0:02:07.260,0:02:10.535
+Next I can make some changes on 'feature' branch or 'master' branch
+
+0:02:10.535,0:02:13.475
+Or in both. From 'rerere's side
+
+0:02:13.475,0:02:16.515
+ changes are unimportant. If it doesn't touch the conflict.
+
+0:02:16.985,0:02:19.985
+It means that if we would have in future same conflict
+
+0:02:19.985,0:02:22.995
+in same file. Then 'rerere' will work out.
+
+0:02:22.995,0:02:25.985
+But other changes does make no sense.
+
+0:02:25.985,0:02:28.755
+For clarity, I will run merge process once again: git merge master
+
+0:02:28.960,0:02:31.980
+Looks like everything is the same. But here we see short message
+
+0:02:32.200,0:02:35.120
+ from 'rerere'  that tells us
+
+0:02:35.125,0:02:38.615
+that the conflict is resolved automatically using the result saved from previous conflict resolution of the same type 
+
+0:02:38.635,0:02:41.695
+And if we see the index.html inside
+
+0:02:41.695,0:02:43.515
+Indeed, there is no any conflict.
+
+0:02:44.320,0:02:51.100
+Means 'rerere' applies to file conflict resolution it remembers but didn't add it by default to index.html
+
+0:02:51.180,0:02:56.840
+Option you can easily add by 
+git config rerere.autoupdate true
+
+0:02:57.260,0:02:59.280
+Special setting of config for 'rerere'
+
+0:02:59.280,0:03:02.265
+Then 'rerere' would not only be able to resolve the conflict but also index it
+
+0:03:02.265,0:03:05.215
+On the opposite it's probably better without
+
+0:03:05.215,0:03:08.225
+Because this way we can clearly see files with conflicts
+
+0:03:08.225,0:03:10.955
+And can manage that the conflict were resolved accurately
+
+0:03:10.955,0:03:14.415
+If so, add files to the index and finish the merge as intended
+
+0:03:14.540,0:03:18.040
+What if it's not. If previous stored conflict resolution
+
+0:03:18.040,0:03:20.280
+now is obsolete and doesn't fit our changes.
+
+0:03:20.560,0:03:24.740
+Then we can get the file with conflict by
+git checkout --merge index.html
+
+0:03:25.100,0:03:27.100
+Call 'rerere' forget
+
+0:03:27.100,0:03:29.800
+git rerere forget index.html
+ to forget old conflict resolution
+
+0:03:29.880,0:03:34.100
+Without that command 'rerere' would not be able to remember new resolution we will make right now
+
+0:03:34.200,0:03:37.760
+and change it as we think it's needed
+
+0:03:38.140,0:03:42.560
+For example let's have those calls for now splitted.
+
+0:03:42.860,0:03:45.100
+This is how will look index.html
+
+0:03:45.720,0:03:49.400
+Merge it once again. Finished.
+
+0:03:49.860,0:03:53.045
+Now we see an example of 'rerere' 
+with merge command
+
+0:03:53.045,0:03:56.485
+Usually Git has different commands for joining files together
+
+0:03:56.895,0:04:00.045
+'rerere' works for them automatically also.
+
+0:04:00.045,0:04:04.340
+Let's make rebase from 'feature' to 'master' branch 
+
+0:04:04.520,0:04:07.860
+I'll recall thar rebase skips the merge step
+
+0:04:08.020,0:04:13.460
+So, this 2 commits will be rebased over in 'master'
+
+0:04:13.600,0:04:16.805
+First commit as we see is rebased successfully
+
+0:04:16.805,0:04:20.200
+Rebasing the 2nd commit brings a conflict
+
+0:04:20.200,0:04:23.640
+He's totally the same as it was in previous merge
+
+0:04:23.800,0:04:27.940
+This are only same changes applied one over the other.
+
+0:04:27.960,0:04:31.295
+The difference is that on previous example joining was done by 'merge' command  but now it's done by 'rebase'
+
+0:04:31.295,0:04:34.585
+But 'rerere' doesn't keep any difference between. The conflict is the same 
+
+0:04:34.585,0:04:36.745
+that's why it resolves it easily
+
+0:04:37.145,0:04:38.725
+Let's open the file
+
+0:04:39.315,0:04:42.595
+To see that, yeah, the conflict is not there. Such conflict resolution is trusty
+
+0:04:42.600,0:04:44.980
+we just have to add it to the index.html
+
+0:04:44.980,0:04:47.100
+and finish the rebase.
+
+0:04:48.360,0:04:51.195
+Git stores all data on 'rerere' conflicts 
+
+0:04:51.200,0:04:54.140
+in directory
+There is nothing more in that directory
+
+0:04:54.240,0:04:58.340
+So, If we decide that we have to forget all conflict resolutions
+
+0:04:58.440,0:04:59.695
+We need just to delete the directory
+
+0:04:59.695,0:05:02.545
+Git deletes old conflict solutions
+
+0:05:02.545,0:05:05.375
+automatically during the garbage collection
+
+0:05:05.375,0:05:08.355
+If they are older than this config parameter... 
+60 days by default
+
+0:05:08.360,0:05:13.460
+Data of unresolved conflicts are deleted if they are older than this parameter
+
+0:05:13.460,0:05:15.040
+15 days by default
+
+0:05:15.400,0:05:18.600
+If 'rerere' bored you. And you want to switch it off.
+
+0:05:18.605,0:05:21.465
+And start to resolve conflicts by yourself again.
+
+0:05:21.465,0:05:24.420
+You can set config setting for this tool as false
+
+0:05:24.420,0:05:27.485
+Or you can delete it
+
+0:05:27.485,0:05:30.045
+But be cautious that with deletion of this config parameter
+
+0:05:30.045,0:05:33.105
+you have to kill the directory specified for 'rerere'
+
+0:05:33.105,0:05:35.975
+Otherwise git will account that 'rerere' is working
+
+0:05:36.775,0:05:39.845
+'rerere' has it's own learning script
+
+0:05:39.845,0:05:42.925
+which goes through branches, analyse merge commits
+
+0:05:42.925,0:05:45.915
+and remembers previous conflict resolutions
+
+0:05:45.995,0:05:48.985
+inlufing those conflicts that were resolved before the 'rerere' was turned on
+
+0:05:49.295,0:05:52.345
+This script is called 'rerere train'
+
+0:05:52.345,0:05:55.355
+Usually it's located inside the Git installation
+
+0:05:55.355,0:05:58.405
+in subdirectory 'contrib' not in the system PATH
+
+0:05:58.405,0:06:01.375
+In my case it's here. Your path may be different
+
+0:06:01.595,0:06:04.315
+It is supplied with commit from which it will start to analyze
+
+0:06:04.320,0:06:06.920
+or it is supplied with 'all' to go through all branches
+
+0:06:07.260,0:06:10.700
+I'll note that in this case this command does nothing
+
+0:06:10.800,0:06:13.280
+Because as we could see from right side image
+
+0:06:13.280,0:06:16.560
+we have no any merges after rebase
+
+0:06:16.840,0:06:20.240
+Virtually happens that conflict we are interested in
+
+0:06:20.240,0:06:23.040
+is located in unreachable commit
+
+0:06:23.045,0:06:26.125
+We could assign it clearly
+
+0:06:26.125,0:06:29.585
+In our case we just rebased from an old merge 
+
+0:06:29.645,0:06:32.315
+That's why we can point to it through 'reflog'
+
+0:06:32.975,0:06:36.035
+Here we have outputs that shows us 
+
+0:06:36.035,0:06:37.525
+that the mechanism is already taught
+
+0:06:37.975,0:06:40.995
+Respectively if we work with 'rerere' disabled
+
+0:06:40.995,0:06:44.165
+But we have to resolve same conflict once again
+
+0:06:44.165,0:06:47.380
+We can supply script with 'all' branches 
+
+0:06:47.760,0:06:51.600
+Or if the commit  is old commit resolution is too far to be reached
+
+0:06:51.600,0:06:53.400
+we can pass it in some other way
+
+0:06:53.405,0:06:56.775
+through id or as I did through 'reflog'
+
+0:06:56.820,0:07:01.000
+Then 'rerere' will resolve alike conflicts automatically
+
+0:07:01.000,0:07:02.935
+As I previously said
+
+0:07:02.935,0:07:05.795
+on garbage collection 'rerere' deletes previous old conflict resolutions
+
+0:07:05.800,0:07:08.960
+by default which are older than 60 days from creation
+
+0:07:08.960,0:07:13.680
+but 'rerere train'
+can read them again if needed commits still exist
+
+0:07:13.880,0:07:15.140
+means to restore
+
+0:07:15.465,0:07:18.425
+Finally I will mention that script 'rerere train'
+
+0:07:18.425,0:07:21.435
+is written in shell language (sh)
+
+0:07:21.440,0:07:25.480
+Thas why on Windows it will work using git bash
+
+0:07:25.480,0:07:27.600
+and not from PowerShell of cmd.
