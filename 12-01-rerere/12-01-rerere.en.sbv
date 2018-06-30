@@ -1,5 +1,5 @@
 0:00:00.360,0:00:03.040
-  There are situations when conflict already resolved
+There are situations when conflict already resolved
 
 0:00:03.040,0:00:05.865
 have to be resolved once again. For example
@@ -8,22 +8,22 @@ have to be resolved once again. For example
 we start to rebase. Place some commits over commits.
 
 0:00:09.045,0:00:12.015
-Resolve conflicts from them. And here happens that we have to --abort the rebase.
+Resolve conflicts from them. And here happens that we have to '--abort' the rebase.
 
 0:00:12.015,0:00:14.705
- Thus when we rebase again
+Thus when we rebase again
 
 0:00:14.705,0:00:17.445
 will emerge the same conflicts. 
 
 0:00:17.445,0:00:20.485
-Or if we've just merge but need to revert it. 
+Or if we've just merged but need to revert it. 
 
 0:00:20.485,0:00:22.935
 To make some  minor needed changes.
 
 0:00:22.940,0:00:25.560
- After which we try once again to merge but end up with same conflicts.
+After which we try to merge it once again but end up with the same conflicts.
 
 0:00:25.560,0:00:28.540
 Or a more tricky example.
@@ -44,7 +44,7 @@ Then presumably you'll meet same conflicts.
 You can easily find yourself situations in development process where you have to resolve conflicts in repeat, better than I'll list them for you. 
 
 0:00:47.060,0:00:49.680
-Alas,  nobody likes to do same things twice.
+Alas, nobody likes to do same things twice.
 
 0:00:49.900,0:00:52.825
 Happily ever Git is able to do it automatically.
@@ -53,25 +53,25 @@ Happily ever Git is able to do it automatically.
 With help of mechanism called 'rerere'.
 
 0:00:56.000,0:01:00.440
- Shortened from REuse, REcorded, REsolution.
+Shortened from REuse, REcorded, REsolution.
 
 0:01:00.660,0:01:04.995
-When you enable this mechanism. Git will start to remember how was conflicts were resolved.
+When you enable this mechanism. Git will start to remember how conflicts were resolved.
 
 0:01:04.995,0:01:07.565
-So even this conflict pops up one more time
+So even same conflict pops up one more time
 
 0:01:07.565,0:01:10.595
-he will be resolved automatically.
+it will be resolved automatically.
 
 0:01:10.595,0:01:13.205
 For example let's take the repository we worked before
 
 0:01:13.385,0:01:16.115
-and foremost switch on the 'rerere' mechanism.
+and foremost switch on to the 'rerere' mechanism.
 
 0:01:16.120,0:01:19.060
-git config rerere.enabled true
+git config 'rerere.enabled true'
 
 0:01:19.320,0:01:22.280
 Now let's merge to master branch. 
@@ -86,7 +86,7 @@ which appears only If 'rerere' is working. And means
 that 'rerere' mechanism remembered current state for index.html
 
 0:01:34.800,0:01:36.380
-before the conflicts is resolved.
+before the conflicts are resolved.
 
 0:01:36.520,0:01:39.240
 Now, let's fix our conflict in editor.
@@ -95,7 +95,7 @@ Now, let's fix our conflict in editor.
 This is how our index.html looks like. 
 
 0:01:43.080,0:01:46.655
-We add changes: git add index.html , and finish the merge: git commit --no-edit. Ready.
+We add changes: 'git add index.html' , and finish the merge: 'git commit --no-edit'. Ready.
 
 0:01:46.655,0:01:49.625
 Here we see one more message. 
@@ -104,10 +104,10 @@ Here we see one more message.
 Which appear again only with help of 'rerere' enabled.
 
 0:01:52.480,0:01:56.620
-Which means exactly how Git remembers the conflict resolution.
+Is how Git remembers the conflict resolution.
 
 0:01:56.840,0:01:59.680
-For now let's imagine I've found out that something goes wrong.
+For now let's imagine. that I've found out that something goes wrong.
 
 0:01:59.685,0:02:01.425
 And I merged too early.
@@ -117,7 +117,7 @@ Well, I have to cancel it.
 
 0:02:04.525,0:02:07.260
 And I will do it by going 1 commit backward: 
-git reset --hard @~
+'git reset --hard @~'
 
 0:02:07.260,0:02:10.535
 Next I can make some changes on 'feature' branch or 'master' branch
@@ -126,7 +126,7 @@ Next I can make some changes on 'feature' branch or 'master' branch
 Or in both. From 'rerere's side
 
 0:02:13.475,0:02:16.515
- changes are unimportant. If it doesn't touch the conflict.
+changes are unimportant only If it doesn't touch the conflict.
 
 0:02:16.985,0:02:19.985
 It means that if we would have in future same conflict
@@ -138,13 +138,13 @@ in same file. Then 'rerere' will work out.
 But other changes does make no sense.
 
 0:02:25.985,0:02:28.755
-For clarity, I will run merge process once again: git merge master
+For clarity, I will run merge process once again: 'git merge master'
 
 0:02:28.960,0:02:31.980
 Looks like everything is the same. But here we see short message
 
 0:02:32.200,0:02:35.120
- from 'rerere'  that tells us
+from 'rerere'  that tells us
 
 0:02:35.125,0:02:38.615
 that the conflict is resolved automatically using the result saved from previous conflict resolution of the same type 
@@ -160,7 +160,7 @@ Means 'rerere' applies to file conflict resolution it remembers but didn't add i
 
 0:02:51.180,0:02:56.840
 Option you can easily add by 
-git config rerere.autoupdate true
+'git config rerere.autoupdate true'
 
 0:02:57.260,0:02:59.280
 Special setting of config for 'rerere'
@@ -188,14 +188,14 @@ now is obsolete and doesn't fit our changes.
 
 0:03:20.560,0:03:24.740
 Then we can get the file with conflict by
-git checkout --merge index.html
+'git checkout --merge index.html'
 
 0:03:25.100,0:03:27.100
 Call 'rerere' forget
 
 0:03:27.100,0:03:29.800
-git rerere forget index.html
- to forget old conflict resolution
+'git rerere forget index.html'
+to forget old conflict resolution
 
 0:03:29.880,0:03:34.100
 Without that command 'rerere' would not be able to remember new resolution we will make right now
@@ -207,7 +207,7 @@ and change it as we think it's needed
 For example let's have those calls for now splitted.
 
 0:03:42.860,0:03:45.100
-This is how will look index.html
+This is how will index.html look like
 
 0:03:45.720,0:03:49.400
 Merge it once again. Finished.
@@ -226,7 +226,7 @@ Usually Git has different commands for joining files together
 Let's make rebase from 'feature' to 'master' branch 
 
 0:04:04.520,0:04:07.860
-I'll recall thar rebase skips the merge step
+I'll recall that rebase skips the merge step
 
 0:04:08.020,0:04:13.460
 So, this 2 commits will be rebased over in 'master'
@@ -300,7 +300,7 @@ If 'rerere' bored you. And you want to switch it off.
 And start to resolve conflicts by yourself again.
 
 0:05:21.465,0:05:24.420
-You can set config setting for this tool as false
+You can set config setting for this tool as 'false'
 
 0:05:24.420,0:05:27.485
 Or you can delete it
@@ -324,7 +324,7 @@ which goes through branches, analyse merge commits
 and remembers previous conflict resolutions
 
 0:05:45.995,0:05:48.985
-inlufing those conflicts that were resolved before the 'rerere' was turned on
+including those conflicts that were resolved before the 'rerere' was turned on
 
 0:05:49.295,0:05:52.345
 This script is called 'rerere train'
@@ -390,7 +390,7 @@ Or if the commit  is old commit resolution is too far to be reached
 we can pass it in some other way
 
 0:06:53.405,0:06:56.775
-through id or as I did through 'reflog'
+through 'id' or as I did through 'reflog'
 
 0:06:56.820,0:07:01.000
 Then 'rerere' will resolve alike conflicts automatically
@@ -418,7 +418,7 @@ Finally I will mention that script 'rerere train'
 is written in shell language (sh)
 
 0:07:21.440,0:07:25.480
-Thas why on Windows it will work using git bash
+Thas why on Windows it will work using Git bash
 
 0:07:25.480,0:07:27.600
-and not from PowerShell of cmd.
+and not from PowerShell or cmd.
