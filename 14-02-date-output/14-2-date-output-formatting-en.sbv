@@ -1,0 +1,276 @@
+0:00:00.205,0:00:03.205
+The last time I told you how to pass date to Git
+
+0:00:03.205,0:00:06.235
+Now let's see how to format date output
+
+0:00:06.680,0:00:09.460
+We'll use as a project the real repository
+
+0:00:09.500,0:00:12.080
+where Git is developed
+
+0:00:12.080,0:00:14.060
+we will format 'git log' date
+
+0:00:14.100,0:00:16.260
+because for the other commands 
+the process is the same
+
+0:00:16.260,0:00:18.200
+in ' --pretty' I will assign '%cd'
+
+0:00:18.240,0:00:20.840
+which means date of the commit in default format
+
+0:00:20.840,0:00:24.280
+then I will place commit header '%s'
+
+0:00:24.520,0:00:27.240
+to make the date shorter
+
+0:00:27.240,0:00:28.980
+let's configure it's format
+
+0:00:29.140,0:00:31.740
+'git log' command has for this purpose flag '--date'
+
+0:00:32.160,0:00:34.895
+other commands may have different approach to select the date format
+
+0:00:34.900,0:00:36.740
+which is followed by a format description
+
+0:00:36.740,0:00:39.480
+the default format is called pretty obvious
+
+0:00:39.540,0:00:43.320
+but there are some others formats. 
+For example 'rfc', 'iso'
+
+0:00:43.320,0:00:44.540
+and so on. 
+
+0:00:44.760,0:00:46.980
+For practical use I draw them in a table.
+
+0:00:47.605,0:00:51.105
+Here we can notice that 'default' is almost alike with 'rfc'
+
+0:00:51.140,0:00:53.660
+the 'iso' date standard is shorter
+
+0:00:53.660,0:00:56.180
+But 'iso' has 2 variants. This is the usual one
+
+0:00:56.180,0:00:59.300
+and 'iso-strict' foremost used in programming
+
+0:00:59.640,0:01:03.040
+You can also set 'short' format - a date without time
+
+0:01:03.040,0:01:05.080
+'unix' timestamp
+
+0:01:05.080,0:01:07.540
+'raw' format -  'unix' timestamp with timezone 
+
+0:01:07.600,0:01:09.680
+which is the internal format of the Git
+
+0:01:09.880,0:01:12.900
+and finally you can set 'relative' format
+
+0:01:12.900,0:01:14.700
+which is time offset for some time ago
+
+0:01:14.940,0:01:18.160
+For example,  in our case
+If we would set 'relative' format
+
+0:01:18.460,0:01:21.575
+you could find out that initially date is measured by days
+
+0:01:21.575,0:01:23.045
+then by weeks
+
+0:01:23.495,0:01:25.495
+after which by months and so on
+
+0:01:26.120,0:01:28.985
+this format is beautiful and short
+
+0:01:28.985,0:01:31.960
+and that its advantage. From the other side it is not always suitable in use
+
+0:01:31.960,0:01:34.320
+because it lacks accuracy 
+
+0:01:34.520,0:01:36.560
+See, we have bunch of commits
+
+0:01:36.820,0:01:39.940
+But it is hard to distinguish which one was created 3 month ago 
+
+0:01:39.940,0:01:42.780
+and which is 3 month and 4 weeks old.
+
+0:01:42.820,0:01:46.220
+Because each has same date - 
+approximately 3 months ago
+
+0:01:46.520,0:01:49.735
+If it fits your needs. It's fine. But if it's not
+
+0:01:49.740,0:01:53.320
+and you want a format other than those described
+
+0:01:53.440,0:01:54.780
+you can set your own format
+
+0:01:55.220,0:01:58.155
+you have to write 'format:' 
+
+0:01:58.155,0:02:00.405
+and then percent designation for 'strftime'
+
+0:02:00.820,0:02:03.460
+it's known function for dates formatting
+
+0:02:03.460,0:02:05.380
+which Git is able to use
+
+0:02:05.480,0:02:08.140
+you can find function annotation separately in documentation
+
+0:02:08.240,0:02:10.540
+with detailed description
+
+0:02:10.540,0:02:14.460
+of the meaning of each percent designation and which date component it is related
+
+0:02:14.900,0:02:18.240
+The most used are '%H' - hours
+
+0:02:18.400,0:02:21.215
+small  '%m' - number of month
+
+0:02:21.215,0:02:24.325
+capital '%M' - minutes, and so on.
+
+0:02:24.325,0:02:26.880
+Beside simple designations there are designation sets
+
+0:02:27.080,0:02:30.480
+For example, '%F' means Year-Month-Day, all at once
+
+0:02:30.860,0:02:34.120
+Same as if you would post those values through hyphens '%Y-%m-%d' 
+
+0:02:34.260,0:02:38.920
+capital '%T' is full time format 24/24
+
+0:02:39.600,0:02:42.840
+Let's go back to our example, and set that the date
+
+0:02:42.980,0:02:46.180
+will be in format ':' and then
+
+0:02:46.185,0:02:48.485
+'%F' - Year-month-day.
+
+0:02:48.860,0:02:51.060
+'%T' - time
+
+0:02:51.320,0:02:53.360
+and the timezone
+
+0:02:53.780,0:02:54.780
+well
+
+0:02:55.035,0:02:56.035
+here it is
+
+0:02:56.305,0:02:59.425
+the format I created is identical to 'iso' integrated format
+
+0:02:59.425,0:03:01.620
+but we will try to improve it a little
+
+0:03:02.420,0:03:05.760
+First, notice that If you go further back through the history
+
+0:03:05.760,0:03:08.160
+the dates have different timezones
+
+0:03:08.400,0:03:10.320
+for current projects that's ordinary thing
+
+0:03:10.340,0:03:12.920
+because often developers are from different places of the world
+
+0:03:13.100,0:03:15.520
+and because Git stores date with the timezone
+
+0:03:15.740,0:03:20.380
+Actually, the dates are easy to understand and compare if they are in the same timezone
+
+0:03:20.515,0:03:23.385
+and preferably your current
+
+0:03:23.775,0:03:26.565
+Git for that purpose has suffix '-local'
+
+0:03:26.565,0:03:29.655
+it is added to any format, except 'raw' and 'unix'
+
+0:03:29.655,0:03:32.715
+and turns dates to local timezone
+
+0:03:32.715,0:03:35.855
+My actual timezone is +3. That's why
+
+0:03:35.860,0:03:37.980
+all dates are now formatted in timezone +3
+
+0:03:38.160,0:03:40.840
+Notice, when you are in predetermined timezone
+
+0:03:40.840,0:03:43.100
+there is no more need to output the timezone in date format
+
+0:03:43.160,0:03:45.640
+Unfortunately 'iso' is fixed format
+
+0:03:45.860,0:03:47.860
+so anytime timezone value is returned
+
+0:03:47.940,0:03:53.200
+but I will go back to format and add '-local'
+
+0:03:54.180,0:03:57.400
+'-local' means that the date should be reviewed and recounted
+
+0:03:57.480,0:03:59.560
+now  I can exclude the timezone from there
+
+0:03:59.720,0:04:04.000
+Well. I got compact date in my timezone
+
+0:04:04.520,0:04:07.920
+Here I will end up with formats. As you may notice it has broad choose case 
+
+0:04:07.980,0:04:09.360
+and flexibly to set up
+
+0:04:09.520,0:04:12.600
+As a conclusion, after my personal observations
+
+0:04:12.600,0:04:15.940
+i can affirm the most used formats are 'relative'
+
+0:04:15.940,0:04:17.160
+relative format
+
+0:04:17.280,0:04:20.240
+or the format in local timezone by the method i just showed.
