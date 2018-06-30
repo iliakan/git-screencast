@@ -1,0 +1,354 @@
+0:00:02.660,0:00:09.300
+Lets assume that I'm working on a project, started to write a new function and my colleague is telling me:
+
+0:00:09.600,0:00:14.500
+"You know, we have an urgent issue, its in the "master" branch, please, switch and help us to resolve it"
+
+0:00:14.780,0:00:16.700
+Well, this things can happen.
+
+0:00:16.840,0:00:20.060
+Typing "git checkout master" ...
+
+0:00:20.960,0:00:23.220
+An error. What've happened?
+
+0:00:23.480,0:00:30.640
+Previously we only switched branches while having a clean status, and now we have an uncommitted changes in the index.html.
+
+0:00:31.160,0:00:33.900
+The error occured because checkout is having our back covered.
+
+0:00:34.120,0:00:40.360
+Because if it changed index.html to the one we have in "master" our uncommitted changes will be erased.
+
+0:00:40.940,0:00:45.120
+I have no moral right to commit it as commit assumes,
+
+0:00:45.120,0:00:50.600
+that we were doing something and made, maybe, small, but meaningful and holistic change to the project.
+
+0:00:50.920,0:00:53.540
+And currently I've just started to write a function, but didnt finish it yet.
+
+0:00:53.720,0:00:57.880
+Under no circumstances one cant commit this kind of broken and unfinished code to the project.
+
+0:00:58.420,0:01:03.820
+So what should we do with these changes, if we urgently need to switch to the other branch right now?
+
+0:01:04.140,0:01:08.620
+This kind of situation is of an ordinary one, so we should know how to resolve it.
+
+0:01:09.160,0:01:10.820
+There are 2 main ways for that:
+
+0:01:11.580,0:01:18.520
+First one - make checkout switch the branch, by using the "--force" flag or, shortly "-f"
+
+0:01:19.200,0:01:24.160
+By that checkout will just rewrite the files with the ones from "master".
+
+0:01:24.640,0:01:29.200
+You see, the switch was successful: index.html was changed to the version from the "master".
+
+0:01:29.720,0:01:34.620
+But now if we go back to fix ... You see, our changes are gone.
+
+0:01:35.140,0:01:39.300
+The "-f" flag's peculiar feature is that its sometimes used with no arguements at all
+
+0:01:39.300,0:01:41.560
+Just to cancel all the uncommitted changes.
+
+0:01:41.840,0:01:48.380
+For example, I've made some changes, some experiments in the working directory, maybe even added to index
+
+0:01:48.620,0:01:52.540
+and then I'm looking at it and, no, that will not do. How do clean it all up?
+
+0:01:53.080,0:01:55.860
+Call "git checkout -f HEAD" ...
+
+0:01:56.300,0:02:00.620
+As "HEAD" is a reference to the current branch we are switching to exactly where we were
+
+0:02:00.960,0:02:02.760
+So we are not switching the branch.
+
+0:02:03.240,0:02:10.860
+But the "-f" flag is saying we have to checkout, so all the files should be rewritten with the versions of the same branch
+to which we are switching to.
+
+0:02:11.320,0:02:15.840
+So to the versions that are in the "HEAD" of the repository. Thats exactly what we need.
+
+0:02:16.200,0:02:21.900
+To keep it short we can even remove the "HEAD" as if branch is not set "checkout" will use the "HEAD" as the default.
+
+0:02:22.180,0:02:23.760
+Done, files are restored.
+
+0:02:23.960,0:02:28.480
+Now we have a clean status, as index changes were reset by the "-f" as well.
+
+0:02:29.120,0:02:31.320
+We've just had a look how to remove the changes.
+
+0:02:31.560,0:02:34.640
+Lets have a look at the alternative approach.
+
+0:02:34.840,0:02:39.240
+If we want to keep the changes, we can get use of the "git stash" command.
+
+0:02:39.500,0:02:42.000
+This command grabs all the uncommitted changes,
+
+0:02:42.200,0:02:45.840
+and removes them from the files and archives them in a special way inside git.
+
+0:02:46.480,0:02:49.460
+You see, the file is back to its initial state.
+
+0:02:49.820,0:02:54.480
+We have a clean status, so we can siwtch: "git checkout master" ...
+
+0:02:55.700,0:02:56.600
+And back.
+
+0:02:57.920,0:02:59.320
+You see, it works
+
+0:02:59.960,0:03:04.320
+Then, when I want to get my changes back "git stash pop"...
+
+0:03:05.700,0:03:07.340
+See, the changes are back in the file.
+
+0:03:07.800,0:03:12.860
+Therefore "git stash" allows us to preserve unfinished changes and then get back to them easilly.
+
+0:03:13.240,0:03:20.560
+Its important to keep in mind that technically git does not connect these saved changes to any particular branch or particular commit.
+
+0:03:20.940,0:03:23.140
+So one can always save the changes,
+
+0:03:23.300,0:03:27.840
+by just calling the "git stash" on one branch and apply "git stash pop" on the other branch.
+
+0:03:28.140,0:03:31.960
+If the file in the other branch, to which changes have to be applied 
+
+0:03:31.960,0:03:33.660
+"index.html" in our case
+
+0:03:33.740,0:03:37.320
+is different in the branch from which we stashed the changes
+
+0:03:37.400,0:03:42.480
+then git might be having problems with applying these changes, or so called "merge conflict" will occur.
+
+0:03:42.860,0:03:46.620
+We will have a closer look to what that is and how to deal with this in our next videos.
+Мы подробно рассмотрим, что это такое и как с этим быть в будущих выпусках.
+
+0:03:46.880,0:03:50.160
+Most of the time this "stash" problem happens due to an error. 
+
+0:03:50.420,0:03:56.700
+While we were making stash on one branch and applied it to the other, albeit we wanted to apply to the one where we made changes initially.
+
+0:03:56.920,0:04:03.240
+Therefore we have to be carefull to where stash was made and where its going to be applied, so that dont shoot ourselfs in the foot.
+
+0:04:03.840,0:04:05.640
+"git stash" has some more features.
+
+0:04:05.760,0:04:09.900
+But to keep it straight we'll have a look at it in the other issue of our screencast,
+
+0:04:10.000,0:04:14.460
+that is dedicated to namely "git stash", so we could see how this command works in greater details.
+
+0:04:14.840,0:04:16.680
+For now lets get back to branching.
+А сейчас давайте вернёмся к веткам.
+
+0:04:17.020,0:04:20.680
+Probably, after the last one you have an impression
+
+0:04:20.680,0:04:24.060
+that any uncommitted changes are blocking us from switching a branch.
+
+0:04:24.520,0:04:25.620
+Thats not true at all.
+
+0:04:25.900,0:04:30.980
+checkout only complains when the change is in the file that is different between the branches.
+
+0:04:31.260,0:04:33.380
+So the one he has to change.
+
+0:04:33.860,0:04:38.280
+In our case "index.html" is one in "fix" and different in "master".
+
+0:04:38.520,0:04:41.020
+what if file is same in both branches?
+А что если файл в обоих ветках одинаковый?
+
+0:04:41.220,0:04:45.120
+That is quite typical. Most likely most files between the branches remain the same. 
+
+0:04:45.380,0:04:51.120
+for instance, in our case "script.js" file in the "fix" branch wasnt changed. Its same as in "master".
+
+0:04:51.500,0:04:57.600
+All the changes that we've done in the fix were related to index.html and we didnt touch the "script.js". 
+
+0:04:57.940,0:05:05.080
+Therefore if I delete the uncommitted changes and make some but in the script.js instead
+
+0:05:05.440,0:05:07.180
+(and here's our new status)
+
+0:05:07.440,0:05:09.720
+now call "git checkout master"...
+
+0:05:10.320,0:05:12.420
+You see, we switched.
+
+0:05:12.760,0:05:17.060
+No error this time, because when switching checkout is checking the repository
+
+0:05:17.060,0:05:23.300
+Aha, so the "script.js" file is same in both  branches, therefore I dont need to change it.
+
+0:05:23.500,0:05:27.340
+And keeps the file as it is, without touching "script.js" at all.
+
+0:05:27.760,0:05:30.920
+Therefore the uncommitted changes remain there as they are.
+
+0:05:31.820,0:05:37.720
+Checkout makes a mark, you see "M" from modified, that means that the file was modified.
+
+0:05:37.920,0:05:44.340
+Thats for your information, so you know that the switch was successfull, but the uncommitted changes remain in a file.
+
+0:05:44.660,0:05:49.960
+We have a closer look at "index.html" to make sure that the switch was successfull.
+
+0:05:50.260,0:05:52.940
+Now its like that, so its aligned with the "master" branch.
+
+0:05:53.300,0:05:55.040
+Lets switch back ...
+
+0:05:55.700,0:06:01.080
+Switch successful. "index.html" was changed to the one we had in the "fix" branch.
+
+0:06:01.460,0:06:04.680
+"script.js" has uncommitted changes as it had before.
+
+0:06:05.220,0:06:08.720
+So the logic is the following: if file is different between the branches
+
+0:06:08.840,0:06:13.100
+or is present in one branch and removed from the other - we have an error.
+
+0:06:13.420,0:06:15.700
+If file is the same, changes are preserved.
+
+0:06:16.400,0:06:21.240
+I give it so much attention as this checkout behavior may lead
+
+0:06:21.300,0:06:25.120
+to the situation when the work done for one branch will get into another branch.
+
+0:06:25.680,0:06:30.020
+For example, in our case changes in the "script.js" file we've made on a "fix" branch
+
+0:06:30.500,0:06:32.780
+Maybe we even added them to index.
+
+0:06:33.120,0:06:37.140
+But if we switch to the master and call "git commit",
+
+0:06:37.340,0:06:40.360
+new commit will write all these changes to the "master" branch.
+
+0:06:40.880,0:06:46.360
+If thats not what we want, then as soon as we see this message from "checkout" we can switch to the previous branch,
+
+0:06:46.360,0:06:52.640
+finish something or archive our changes, using "git stash", depends on what are we trying to achieve.
+
+0:06:52.960,0:06:58.320
+Just pay attention while checking out to make sure you avoid this accident transfer of your changes between the branches.
+
+0:06:58.720,0:07:03.360
+At the same time there are cases in which this checkout behavior is on the contrary, very useful.
+
+0:07:04.160,0:07:09.380
+For example, lets get back at 2 commits ago, the moment when we didnt create a "fix" branch yet.
+
+0:07:09.660,0:07:15.000
+Its not always obvious when you need a new branch.
+
+0:07:15.180,0:07:21.860
+You might start working on master, thinking that the change is trivial, change this, commit
+
+0:07:21.980,0:07:27.780
+But then you realize you also have to change this and this. All of a sudden it a brand new feature, way bigger than you thought of it
+
+0:07:28.020,0:07:32.700
+You cant finish it right now and you have to put it into its own branch.
+
+0:07:33.200,0:07:36.180
+Good news everyone! Git makes it trivial.
+
+0:07:36.380,0:07:43.320
+If I create a new branch right now and switch to it all the uncommitted changes are going to be inside it.
+
+0:07:43.800,0:07:45.720
+In other words, running... 
+
+0:07:46.120,0:07:50.880
+As you can see on the image here, "fix" branch was created that is pointing to the current commit
+
+0:07:50.980,0:07:53.100
+and "checkout" switched HEAD right to it.
+
+0:07:53.400,0:07:59.040
+As both master and fix are now pointing at the same commit there are no changes between them.
+
+0:07:59.500,0:08:03.000
+So all the uncommitted changes were saved while we switched.
+
+0:08:03.640,0:08:07.980
+Of course I can get back to "master" and switch to "fix" again.
+
+0:08:08.200,0:08:10.600
+As you see, the uncommitted changes remain.
+
+0:08:10.820,0:08:14.780
+They do not stop us from switching between 2 identical branches.
+
+0:08:15.040,0:08:19.020
+But now if I commit all as I did while being at "master"
+
+0:08:19.020,0:08:22.100
+its saved in "fix" as intended.
+
+0:08:22.860,0:08:28.280
+I also note that its easy to move the changes to the new branch as they were not committed.
+
+0:08:29.060,0:08:32.220
+What if we accidentally made some commits in the wrong branch?
+
+0:08:32.660,0:08:34.000
+Well, it can happen.
+
+0:08:34.260,0:08:37.940
+More good news, its something we can fix easilly as we'll see in the next issue.
