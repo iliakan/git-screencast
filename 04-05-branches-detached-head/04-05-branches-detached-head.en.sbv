@@ -1,0 +1,143 @@
+0:00:00.860,0:00:06.200
+Previously we used "git checkout" together with the name of the branch, like "master" or "feature".
+
+0:00:06.740,0:00:09.980
+But technically we can just switch to any commit.
+
+0:00:10.360,0:00:11.780
+For example, this one [1913].
+
+0:00:12.140,0:00:16.620
+One can use it to temporary get back to any previous state of the project.
+
+0:00:16.980,0:00:19.280
+It doesn't matter if any branch is pointing to it or not.
+
+0:00:19.580,0:00:23.260
+But this creates a so-called "detached HEAD" state.
+
+0:00:23.500,0:00:26.640
+And we have to understand what is it exactly to avoid doing anything we can regret.
+
+0:00:27.000,0:00:28.040
+Running...
+
+0:00:28.180,0:00:30.300
+Wow, git wrote so much about it.
+
+0:00:31.180,0:00:33.800
+Checkout to commit, actually goes as usual.
+
+0:00:34.240,0:00:38.680
+Git moves the "HEAD" and updates the files of the project to this commits state.
+
+0:00:39.060,0:00:43.920
+But theres one thing that git is warning us about with this long message.
+
+0:00:44.720,0:00:47.980
+The general idea is that we switched into a special state,
+
+0:00:48.120,0:00:51.680
+that is called "detached HEAD" so the HEAD is not pointing to any branch now.
+
+0:00:52.240,0:00:57.340
+Previously we gave a branch name to "checkout" command and it switched HEAD to it.
+
+0:00:57.720,0:01:02.400
+And now we gave it a commit identifier and checkout moved HEAD to it.
+
+0:01:02.800,0:01:07.640
+In other words HEAD is not pointing to a branch, but to this particular commit instead.
+
+0:01:08.160,0:01:09.880
+Lets even have a look at a file...
+
+0:01:10.640,0:01:14.560
+You see, we used to have a branch there and now its a commit identifier.
+
+0:01:14.980,0:01:19.780
+Namely this is a state called "detached HEAD" and git is warning us about it.
+
+0:01:20.560,0:01:24.200
+Whats so special about this state and why one should be warned about it?
+
+0:01:24.820,0:01:28.240
+To understand this lets add one more commit to the project.
+
+0:01:28.700,0:01:30.920
+Lets change this phrase...
+
+0:01:31.780,0:01:33.580
+And save the changes into the repo.
+
+0:01:35.480,0:01:39.620
+Parent of the new commit becomes the one, to which the HEAD was pointing previously -
+
+0:01:39.980,0:01:41.960
+therefore we get the following image.
+
+0:01:42.320,0:01:46.440
+If we continue the development, then this commit will have a new one and so one.
+
+0:01:47.400,0:01:51.800
+These commits pecularity is that they are not a part of any of the branches.
+
+0:01:52.100,0:01:54.020
+Practically its quite unuseful.
+
+0:01:54.320,0:01:57.500
+For example, lets switch to the "fix" branch.
+
+0:01:58.100,0:02:03.580
+Note, that are not in "detached HEAD" state any more, now we are back to the normal branch as before.
+
+0:02:04.260,0:02:06.820
+And commits that we've done are hanging there,
+
+0:02:07.360,0:02:12.300
+as they are not a part of any of the branches its even hard to get back to them.
+
+0:02:12.540,0:02:16.240
+How to actually do that? By commit identifier? Its easy to forget.
+
+0:02:17.020,0:02:20.300
+Even more, we'll see in one of the next issues that
+
+0:02:20.300,0:02:24.260
+git can delete this kind of unreachable commits after a while
+
+0:02:24.920,0:02:29.100
+The situation is kind of dangerous, we dont want to lose the work done so far.
+
+0:02:29.400,0:02:32.380
+Therefore git warns us about that with this message.
+
+0:02:32.820,0:02:38.140
+Also it gives us a hint on how to avoid this kind of problems, by creating a branch for these new commits.
+
+0:02:39.160,0:02:44.000
+From the other side you only make commits being in "detached HEAD" state by mistake.
+
+0:02:44.380,0:02:49.420
+For example when we switch to commit, instead of just have a look at the state of the project at that time
+
+0:02:49.800,0:02:54.740
+Then we've checked the project through, forgot that we are in the "detached HEAD" state and made a commit.
+
+0:02:55.060,0:02:59.600
+While we wanted to commit to the "master" or to the "feature".
+
+0:03:00.060,0:03:04.260
+Fortunately enough its easy to fix. Git has a cherry-pick command,
+
+0:03:04.360,0:03:07.520
+that can be given a commit or several commits
+
+0:03:07.520,0:03:11.680
+and it will copy them to the branch given, like if we made the commits being in this branch
+
+0:03:12.020,0:03:13.600
+After that the problem is solved.
+
+0:03:14.190,0:03:17.329
+We'll talk more about the "cherry-pick" command in another issue of the screencast.
