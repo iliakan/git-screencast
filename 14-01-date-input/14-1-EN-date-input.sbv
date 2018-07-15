@@ -34,7 +34,7 @@ I mean "month/day/year".
 0:00:38.280,0:00:41.680
 Last row dates are in Unix timestamp format.
 
-0:00:41.860,0:00:46.240
+0:00:41.860,0:00:46.240 
 That's number of seconds that have elapsed since January 1, 1970 00:00 UTC
 
 0:00:46.540,0:00:50.800
@@ -170,7 +170,7 @@ that all these notes are identical.
 For example, I can set 3 days
 
 0:03:00.800,0:03:02.580
-can, do without "s", actually
+can do without "s", actually
 
 0:03:02.580,0:03:06.900
 meaning singular. And this will also work as Git doesn't care about it too much.
@@ -414,7 +414,7 @@ I want to delete all the records from "reflog"
 
 0:05:58.720,0:06:03.440
 I run "git reflow expire" command to delete
-
+ 
 0:06:03.680,0:06:05.140
 add an expire parameter to it
 
@@ -486,3 +486,4 @@ but once you grasp it you can use them quite comfortable.
 
 0:06:54.500,0:06:57.160
 We'll talk about the output formats further.
+

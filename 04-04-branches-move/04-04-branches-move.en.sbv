@@ -1,0 +1,104 @@
+0:00:00.069,0:00:02.069
+Now lets have a look at a more complex case.
+
+0:00:02.889,0:00:09.300
+Lets assume we've made couple of commits, exactly same as in the previous issues, but in a "master" branch, instead of "fix".
+
+0:00:09.900,0:00:14.000
+And we only realize that late, that making these in the main branch was a mistake.
+
+0:00:14.600,0:00:18.520
+Furtunately enough theres no problem in that. We are going to fix it now. 
+
+0:00:19.000,0:00:22.000
+First lets create a new "fix" branch first on top of the current commit.
+
+0:00:22.600,0:00:27.680
+Now all we need is to move "master" back here.
+
+0:00:28.300,0:00:31.180
+So the last commits will only be in the "fix" branch.
+
+0:00:31.600,0:00:36.620
+And the overall state will be same as we've seen in the previous issues,
+
+0:00:36.660,0:00:39.800
+when we made commits in the "fix" branch from the very beginning.
+
+0:00:40.780,0:00:45.180
+Git has several commands that move the branches, each has various features,
+
+0:00:45.180,0:00:47.600
+which might be helpful depending on the case so that they complete each other well.
+
+0:00:48.080,0:00:54.120
+We'll learn them during the screencast. Right now lets use the one we know - "git branch".
+
+0:00:54.600,0:01:01.500
+We can give the commit to it, together with the branch name. Then it will create a branch with the name given pointing to the commit.
+
+0:01:01.500,0:01:06.020
+Now this command, as you can see, didnt work as we already have the "master" branch.
+
+0:01:06.420,0:01:11.080
+To circumvent it lets add the "--force" flag or, shortly "-f".
+
+0:01:11.580,0:01:14.600
+It will make "git branch" to create a branch if it doesn't exist
+
+0:01:14.600,0:01:18.400
+or, like in our case, move it if it exist.
+
+0:01:18.740,0:01:20.260
+Let me try.
+
+0:01:20.260,0:01:25.280
+Error, because "git branch" require us to leave the branch first, before changing it.
+
+0:01:25.280,0:01:26.760
+Running again...
+
+0:01:26.760,0:01:31.380
+It worked. The "master" branch is pointing to the previous commit, exactly what we wanted.
+
+0:01:31.500,0:01:34.140
+Now new commits are only in the fix branch.
+
+0:01:34.440,0:01:37.620
+As you see, literally, couple of commands: create a branch and move it.
+
+0:01:38.260,0:01:44.800
+If you changed your mind you can just move it back: "git branch -f". Let "master" point at the same commit as fix.
+
+0:01:45.100,0:01:49.860
+Note that I've used a branch name, instead of the commit identifier.
+
+0:01:50.480,0:01:56.160
+Theres nothing special about it. The branch technically cant point to another branch, but to commit.
+
+0:01:56.620,0:02:01.860
+And the way I've provided this commit, by identifier or via link, doesn't matter.
+
+0:02:02.900,0:02:07.400
+For the same purpose, instead of "git branch" its often more convenient to use the "git checkout" command.
+
+0:02:07.920,0:02:14.440
+We've used the "-b" flag already. It allow us to create a branch with the name given on a given commit and switch into it.
+
+0:02:14.700,0:02:21.880
+And if we use "-B" and there's such a branch already it will move it and then switch to it.
+
+0:02:21.880,0:02:26.300
+So its same as "git branch" with the "-f" key and calling a "git checkout" after that.
+
+0:02:26.780,0:02:27.840
+Executing...
+
+0:02:27.840,0:02:33.600
+Done. The "master" branch was moved and we switched into it. And the commits,
+
+0:02:33.600,0:02:38.200
+that we mistakently made in the "master" are now in the "fix".
+
+0:02:38.500,0:02:41.820
+So the result is the same as if we've initially committed to fix.
