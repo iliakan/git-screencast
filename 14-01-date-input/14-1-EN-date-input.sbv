@@ -8,19 +8,19 @@ I've mentioned it in "log" and "reflog" video and in some other ones
 where I had to pass a date to Git, or specify a date output format.
 
 0:00:16.180,0:00:18.940
-First of all, lets have a look how one can set a date format.
+First of all, let's have a look how one can set a date format.
 
 0:00:18.940,0:00:20.500
-Heres a list of examples:
+Here's a list of examples:
 
 0:00:20.500,0:00:22.740
 As you might have noticed, Git can accept almost any format.
 
 0:00:23.020,0:00:25.540
-Dates precision is seconds.
+With seconds-accurate dates.
 
 0:00:25.620,0:00:28.520
-If dates time zone is not set local time is used by default.
+If dates time zone is not set, local time is used by default.
 
 0:00:29.140,0:00:31.920
 One can also set the date without setting the time. Like here.
@@ -34,20 +34,20 @@ I mean "month/day/year".
 0:00:38.280,0:00:41.680
 Last row dates are in Unix timestamp format.
 
-0:00:41.860,0:00:46.240
-Thats number of seconds that have elapsed since January 1, 1970 00:00 UTC
+0:00:41.860,0:00:46.240 
+That's number of seconds that have elapsed since January 1, 1970 00:00 UTC
 
 0:00:46.540,0:00:50.800
 It's a widely used format to represent a date as unique number.
 
 0:00:50.860,0:00:54.660
-Its used in software development and git understands it too.
+It's used in software development and Git understands it too.
 
 0:00:55.320,0:00:57.660
-As for now everything looks pretty simple, isnt't it?
+As for now everything looks pretty simple, isn't it?
 
 0:00:58.020,0:01:01.320
-It gets fun when the date is set partly.
+When date is set partly this is where the fun begins.
 
 0:01:01.320,0:01:04.240
 I've created a test repository for demonstrational purposes
@@ -98,19 +98,19 @@ but not all of them. What happened?
 If time is not set, current time is used.
 
 0:01:48.840,0:01:54.500
-I have about 4 PM now so Git used it to get this date.
+I have about 4 PM now, so Git used it to get this date.
 
 0:01:54.900,0:01:58.880
 Lets have a look at some more examples to get a better understanding of these subtle moments.
 
 0:01:59.460,0:02:03.260
-Imagine its 30th of January, 2018
+Imagine it's 30th of January, 2018
 
 0:02:03.560,0:02:05.079
 12:30 AM
 
-0:02:05.080,0:02:08.860
-I will show the actual dates on the left and the way git perceives them on the right.
+0:02:05.080,0:02:08.860 
+I will show the actual dates on the left, and the way git perceives them on the right.
 
 0:02:09.100,0:02:11.940
 We've seen some of these before, namely if we set the date only,
@@ -134,10 +134,10 @@ In this case 3:30 PM means 3:30 PM, today.
 Time format can be like this.
 
 0:02:26.040,0:02:27.900
-I didnt set the timezone here.
+I didn't set the timezone here.
 
 0:02:28.020,0:02:28.920
-Its quite straightforward here.
+It's quite straightforward here.
 
 0:02:28.920,0:02:31.500
 If no timezone was specified it will use the current one.
@@ -149,7 +149,7 @@ Lets move on.
 Git, together with various manuals often use the following format:
 
 0:02:37.320,0:02:41.620
-So instead of pointing out a specific date and time we use an interval
+So, instead of pointing out a specific date and time, we use an interval
 
 0:02:41.820,0:02:45.880
 It's 3 weeks here. But it could be hours, days, months and so on...
@@ -170,14 +170,13 @@ that all these notes are identical.
 For example, I can set 3 days
 
 0:03:00.800,0:03:02.580
-can, do without "s", actually
+can do without "s", actually
 
 0:03:02.580,0:03:06.900
-meaning singular. And this will also work as Git doesnt care about it too much.
+meaning singular. And this will also work as Git doesn't care about it too much.
 
 0:03:06.900,0:03:09.560
 I can even write "3."
-
 
 0:03:09.720,0:03:10.620
 days.
@@ -189,7 +188,7 @@ Like that. All the same.
 The "." is often used for convenience
 
 0:03:14.500,0:03:16.800
-because you dont need to wrap the date with quotes if dot is used.
+because you don't need to wrap the date with quotes if dot is used.
 
 0:03:16.800,0:03:18.820
 Word "ago"
@@ -201,7 +200,7 @@ which is often used as well
 is a pure decoration.
 
 0:03:22.320,0:03:25.160
-One can type something like "bla-bla-bla" instead
+One can type something like "blah-blah-blah" instead
 
 0:03:25.160,0:03:26.160
 and it will do the same.
@@ -222,7 +221,7 @@ In this case it's 1 year and 2 months and a little
 from this moment.
 
 0:03:37.620,0:03:40.260
-I can use digits names, instead of digits themselves
+I can use digits' names, instead of digits themselves
 
 0:03:40.380,0:03:43.680
 0 - "zero", "one, two, three" and so on, till 10.
@@ -249,7 +248,7 @@ exactly 24 hours ago.
 However, if we need yesterday morning
 
 0:04:00.220,0:04:01.640
-it's easy to make
+it's easy to make it
 
 0:04:01.840,0:04:05.680
 Let's make it yesterday at 3 AM.
@@ -285,10 +284,10 @@ is that if we are behind the forementioned time
 then it will take 5 PM yesterday.
 
 0:04:28.200,0:04:30.600
-In other words in our case
+In other words, in our case
 
 0:04:30.840,0:04:32.840
-We are having 12:30, right?
+We are having 12:30 PM, right?
 
 0:04:33.060,0:04:34.880
 Less than 5 PM
@@ -303,7 +302,7 @@ as it's written here
 This special names
 
 0:04:41.360,0:04:43.520
-are making sure that the date will not refer to future.
+are making sure that the date will not refer to the future.
 
 0:04:43.680,0:04:46.760
 In practice they are barely used at all.
@@ -339,19 +338,16 @@ These are the ones that are used most often
 when we need to set an expiration date for anything.
 
 0:05:05.460,0:05:07.200
-For example, lets recall that
+For example, let's recall that
 
 0:05:07.380,0:05:09.380
 time to store a record for the "reflog"
 
-0:05:09.540,0:05:11.040
-is stored in the "gc.refLogExpire"
-
-0:05:11.120,0:05:13.060
-variable
+0:05:09.540,0:05:13.060
+is stored in variable "gc.refLogExpire" 
 
 0:05:13.060,0:05:15.860
-Its set in the relative format by default
+It's set in relative format by default
 
 0:05:15.940,0:05:17.140
 and is equal to 90 days
@@ -378,7 +374,7 @@ Technically "never" means zero timestamp.
 In other words
 
 0:05:32.980,0:05:35.060
-1st of Janyart, 1970.
+1st of January, 1970.
 
 0:05:35.360,0:05:36.880
 So, again, technically
@@ -393,7 +389,7 @@ we ask Git to delete all the records
 till 1970.
 
 0:05:42.280,0:05:44.580
-But we dont have such an old ones
+But we don't have such an old ones
 
 0:05:44.780,0:05:46.660
 therefore nothing was deleted.
@@ -416,12 +412,9 @@ For example
 0:05:56.220,0:05:58.480
 I want to delete all the records from "reflog"
 
-0:05:58.720,0:06:01.140
-I run "git reflow expire"
-
-0:06:01.540,0:06:03.440
-command to delete
-
+0:05:58.720,0:06:03.440
+I run "git reflow expire" command to delete
+ 
 0:06:03.680,0:06:05.140
 add an expire parameter to it
 
@@ -447,10 +440,10 @@ Usually
 but when it's used for the expiration date
 
 0:06:22.400,0:06:24.400
-theres a little hack for that in Git
+there's a little hack for that in Git
 
 0:06:24.400,0:06:26.740
-"now" means a far future date,
+"now" means a far future date
 
 0:06:26.820,0:06:28.140
 in this case
@@ -468,13 +461,13 @@ that means everything.
 Or we can use "all" instead of "now"
 
 0:06:36.560,0:06:38.660
-as its a historical pseudoname for "now"
+as it's a historical pseudonym for "now"
 
 0:06:38.820,0:06:41.220
-which is only working for the expiration dates.
+which only works for expiration dates.
 
 0:06:41.340,0:06:43.260
-So if I run this now
+So, if I run this now
 
 0:06:43.320,0:06:45.320
 then all "reflogs" are going to be deleted.
@@ -493,3 +486,4 @@ but once you grasp it you can use them quite comfortable.
 
 0:06:54.500,0:06:57.160
 We'll talk about the output formats further.
+
