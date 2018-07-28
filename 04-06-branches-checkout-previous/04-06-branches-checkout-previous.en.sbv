@@ -1,0 +1,151 @@
+0:00:00.480,0:00:03.160
+In previous videos we were adding data to Git.
+
+0:00:03.340,0:00:08.500
+Now, lets have a look at how to get the older version of the files we need, without affecting the others.
+
+0:00:08.740,0:00:12.760
+Lets imagine that during the development process we've realized that we made a mistake in one of the files.
+
+0:00:12.960,0:00:16.880
+We would like to revert its version to the one of 2 commits ago.
+
+0:00:17.220,0:00:23.740
+We dont want to switch branches and everything, apart of this file should be kept as is, only get the older version of this file.
+
+0:00:24.440,0:00:29.300
+Surprisingly, we are already familiar with the command taht can make it, its "git checkout".
+
+0:00:29.860,0:00:34.780
+For example, lets restore the "index.html" file to the state of this commit.
+
+0:00:35.500,0:00:39.520
+For that let's call "git checkout" giving it the commit
+
+
+0:00:39.740,0:00:44.700
+can be as a link( this commit points to the master ) or an identifier, it doenst matter,
+Можно ссылкой - на этот коммит указывает мастер - или идентификатором, это неважно.
+
+0:00:45.060,0:00:48.880
+then the path, which we want to restore, in our case its "index.html".
+
+0:00:49.600,0:00:53.360
+When specifying the path checkout works simpler, than it usually does.
+
+0:00:53.560,0:00:57.080
+It doesnt switch the branch, but gets the file specified
+
+0:00:57.140,0:01:01.940
+or it can also get several files and directories on the moment of commit specified.
+
+0:01:02.680,0:01:06.680
+You see? First of all, the file is updated, also note
+
+0:01:06.760,0:01:10.340
+the restored files were automatically added to the index by "checkout" command.
+
+0:01:10.960,0:01:17.280
+So now, if I run "git commit", then this, the older version of "index.html" will become current.
+
+0:01:18.020,0:01:21.500
+If we dont want it, we can, of course remove it from the index.
+
+0:01:21.780,0:01:25.040
+It can be done with "git reset index.html" command.
+
+0:01:25.680,0:01:29.420
+And, you see? Changes remained in the working directory, but were removed from the index.
+
+0:01:29.720,0:01:35.900
+The reset command can do a lot of things, we'll have a look at it later, but the way we used it, it reset the index for this particular file
+
+0:01:36.720,0:01:38.300
+Lets have a look at another example.
+
+0:01:38.560,0:01:43.040
+For example, we changed the file in the working directory, experimented a little,
+
+0:01:43.040,0:01:48.600
+but we dont like the changes and we would like to cancel them, without affecting the other files.
+
+0:01:49.200,0:01:54.940
+Same, lets run "git checkout". We need an older version of the files from the current commit, that is from "HEAD".
+
+0:01:56.000,0:02:00.580
+Done. "index.html" file is the same as we previously saved it in the repository.
+
+0:02:01.120,0:02:05.060
+Lets note that in this particular situation, lets revert the changes in the file
+
+0:02:05.100,0:02:11.320
+we could write it shorter, like that: "git checkout index.html", no need to specify the commit at all.
+
+0:02:11.640,0:02:15.380
+By that checkout will return the file to the working directory from the index.
+
+0:02:15.740,0:02:21.220
+In this case we didnt index the changes, so the version of the file in the index matches with the version in the HEAD.
+
+0:02:21.400,0:02:23.240
+Therefore the result will be same as above.
+
+0:02:23.520,0:02:25.360
+Executing and changes were reset.
+
+0:02:25.800,0:02:30.680
+Of course, the behavior is different if we have some of the changes indexed.
+
+0:02:30.960,0:02:33.340
+Then they would have been returned to the working directory.
+
+0:02:34.040,0:02:39.340
+So, checkout with path and commit reverts the file from that commit to the working directory and the index.
+
+0:02:39.500,0:02:43.260
+But checkout with path only reverts it from the index to the working directory.
+
+0:02:44.860,0:02:49.160
+There's one more trick about specifying the paths, which is quite typical for many git commands.
+
+0:02:49.420,0:02:55.960
+There can be a case when our project has a file or a directory with the same name as the commit or the branch.
+
+0:02:56.240,0:03:00.220
+For example, our project can have a directory named "master".
+
+0:03:00.620,0:03:07.760
+But when we call "git checkout master", how can checkout understand what do we mean: is master a path or a branch?
+
+0:03:08.200,0:03:14.020
+The logic is very simple here: checkout is trying to find the link or the commit with this identifier.
+
+0:03:14.440,0:03:16.520
+And if there's none, it assumes that its a path.
+
+0:03:16.920,0:03:22.020
+In our case, as master actually exists, this command will switch to the branch master.
+
+0:03:22.480,0:03:24.140
+But what if we want it to be a patch?
+
+0:03:24.540,0:03:26.980
+For that we have to specify a double dash "--".
+
+0:03:27.200,0:03:32.600
+This way allows us to avoid the ambiguity. Everything that goes after the "--" is treated as path.
+
+0:03:32.820,0:03:37.780
+If we need to use some flags or arguements, like commit, they are going before the double dash.
+
+0:03:38.600,0:03:41.360
+Once again: most of the time you dont need a double dash.
+
+0:03:41.360,0:03:47.440
+Like in the case with "index.html" above. Its obvious that we dont have a branch named "index.html".
+
+0:03:47.980,0:03:51.700
+Double dash is only needed for the case where we need to dissolve the ambiguity
+
+0:03:51.980,0:03:54.520
+Gladly we mostly dont need this in practice.
