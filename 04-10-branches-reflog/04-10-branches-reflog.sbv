@@ -1,347 +1,348 @@
 0:00:01.520,0:00:05.220
-В прошлом выпуске мы удалили ветку feature и тут же восстановили.
+In the previous issue we've deleted the "feature" branch and then restored it immediately.
 
 0:00:05.420,0:00:09.720
-Мы смогли это сделать, потому что помнили, на каком коммите она раньше была.
+We could accomplish it because we knew the commit on which it was pointing previously.
 
 0:00:10.120,0:00:14.020
-Но в реальной жизни мы обычно не запоминаем идентификаторы коммитов.
+In the real life we usually dont keep track of commits identifiers.
 
 0:00:14.380,0:00:17.800
-Восстановить удаленную ветку, даже если мы забыли идентификатор,
+Ref logs will help us to restore the removed branch, even if we forgot the commit id
 
 0:00:17.800,0:00:23.260
-а также выбраться из других схожих ситуаций, с которыми мы ещё встретимся в будущем, нам помогут ref-логи.
+and to solve other similar situations, that are going to meet us on our dev path in future.
 
 0:00:23.840,0:00:27.680
-Каждый раз, когда мы переключаемся с ветки на ветку, делаем коммиты,
+Every time when we switch from one branch to another, make commits,
 
 0:00:27.680,0:00:31.240
-да и вообще при любой операции, которая ведет к изменению ссылок,
+and, actually in case of any operation that lead to the reference change
 
 0:00:31.300,0:00:38.220
-Git записывает это изменение в специальный файл, который называется reflog - от английского слова "reference log", лог ссылок.
+git writes the change to a special file that is called "reflog", abbreviation from "reference log".
 
 0:00:38.700,0:00:41.340
-Такие файлы находятся в директории ".git/logs".
+These files are in the "./git/logs" directory.
 
 0:00:41.660,0:00:45.860
-Например, ref-лог для ссылки HEAD находится в файле ".git/logs/HEAD".
+For example, reflog for the "HEAD" link is in the ".git/logs/HEAD" file.
 
 0:00:46.140,0:00:47.460
-И вот как он выглядит.
+And here's what's inside it.
 
 0:00:47.780,0:00:51.440
-Очень скоро мы посмотрим специальную команду для их более красивого вывода.
+Soon we'll have a look at a special command for having a prettier output of these.
 
 0:00:51.840,0:00:54.040
-Это просто чтобы мы понимали, как она устроена.
+This is just for us to understand how it works.
 
 0:00:54.540,0:00:57.700
-При каждом изменении коммита, на который указывает HEAD,
+With every change of the commit to which the HEAD is pointing
 
 0:00:57.720,0:01:02.240
-то есть как при обновлении самой HEAD, так и при передвижении в соответствующей ветке,
+which occurs when we update the HEAD itself or when we are moving in a corresponding branch,
 
 0:01:02.240,0:01:04.140
-в этот файл добавляется новая строка.
+new line is added to this file.
 
 0:01:04.460,0:01:11.280
-C идентификаторами коммитов, куда HEAD указывала раньше, куда сейчас, кто, когда и зачем произвел изменения.
+It has commits identifiers, where HEAD was pointing previously, where it is pointing now, who when and why made this changes.
 
 0:01:11.880,0:01:15.980
-Для красивого вывода ref-логов обычно используется команда git reflog,
+For a nicer output of reflogs one usually use the "git reflog" command,
 
 0:01:15.980,0:01:20.520
-к которой добавляют ссылку - например, вывести ref-лог для master, feature.
+with the link specified, e.g. show the reflog for the master, feature etc.
 
 0:01:21.080,0:01:26.120
-И наконец, чаще всего используется команда без аргументов - она выведет ref-лог для HEAD.
+And, most of the time command is used with no arguements at all, which results in the reflogs for the HEAD.
 
 0:01:26.640,0:01:33.300
-Ну вот, это, в общем-то, то же самое, что мы уже видели в файле, но выведенное в более красивом виде и в обратном порядке.
+Thats pretty much the same that we've seen in the file already, but printed in a nicer way and in reverse order.
+
 
 0:01:33.680,0:01:36.780
-От последних значений сверху - вниз, к более старым.
+From the latest changes in the top to older ones in the bottom.
 
 0:01:37.400,0:01:42.740
-Посмотрите, пожалуйста. Видите, в самом низу первая запись - это самый начальный коммит.
+Have a look, please, you see, in the very bottom, the very first line - its the initial commit.
 
 0:01:43.080,0:01:46.500
-Потом мы сделали еще коммит, при этом HEAD стала указывать на него.
+Then we made another commit, and HEAD was pointint to it.
 
 0:01:46.720,0:01:52.620
-Хотя, строго говоря, она указывает не напрямую, а через ветку, но для ref-лога это неважно. Еще коммит...
+Albeit, strictly speaking, HEAD was not pointing to it directly, but through a branch. But for the reflog it doesnt matter at all.
 
 0:01:53.000,0:01:56.440
-Затем - напомню историю разработки - мы сделали ветку feature.
+Then, lets recall the history of our dev process, we made a feature branch.
 
 0:01:56.860,0:02:02.600
-Данный факт никак не отражен в этом логе потому, что создание ветки само по себе HEAD не меняет.
+This fact is not reflected in this log at all. Thats because the HEAD is not being changed by the branch creation itself.
 
 0:02:02.960,0:02:07.120
-Но сразу после этого мы перешли на нее, то есть запустили команду git checkout.
+But immediately after that we switched to it, ran the "git checkout" command.
 
 0:02:07.400,0:02:09.920
-При этом HEAD обновляется - и вот запись об этом.
+That have updated the HEAD and heres is the entry reflecting it.
 
 0:02:10.240,0:02:16.340
-Затем мы на ветке feature покоммитили, вернулись на master... И так далее до слияния fix и master.
+Then we made some commits in the feature branch and got back to the master. And so on till the merge of fix and master.
 
 0:02:16.740,0:02:19.080
-Для краткости, чтобы вывод не был очень длинным,
+For conciseness, so that the output was not very long,
 
 0:02:19.080,0:02:23.360
-перед этим выпуском я удалил из ref-лога несколько переключений туда-обратно.
+I've removed some switches of back and forth from the reflog, right before making this video.
 
 0:02:23.560,0:02:25.760
-Но все основные операции были сохранены.
+But all the main operations have remained.
 
 0:02:26.400,0:02:32.900
-Как видно, наши последние действия, а именно удаление веток fix, feature, пересоздание feature
+As you see, our latest actions, namely removing the "fix" and "feature" branches, restoring the "feature"
 
 0:02:33.000,0:02:38.380
-в этом логе отсутствуют, потому что они HEAD никак не меняли. Поэтому они здесь и не отражены.
+are not in this log, as they didnt affect the HEAD in any way. Therefore they are not shown here.
 
 0:02:38.680,0:02:44.220
-Замечу, что дополнительная информация о ссылках, которую вы здесь видите скобках, к ref-логу не относится.
+Lets note that the addiational information on the references, that you see in the parentheses here, has nothing to do with the reflog
 
 0:02:44.380,0:02:48.460
-Это так называемое декорирование: для идентификатора коммита  в вывод
+This is so called decoration of the commit identifier, when the information
 
 0:02:48.480,0:02:52.400
-добавляется информация о ссылках, которые на него прямо сейчас указывают.
+on the references that are pointing to it now is added to it.
 
 0:02:52.820,0:02:56.360
-То есть, если я, к примеру, удалю ветку feature, то здесь про feature ничего не будет.
+That means if I, for instance, will delete the feature branch now, then feature decoration will be removed from here.
 
 0:02:56.680,0:03:01.660
-Потому что эта информация в логе не хранится - она просто выводится по текущим данным для красоты.
+Thats because the information is not stored in the log, it is only shown according to the current state for completeness.
 
 0:03:02.140,0:03:03.640
-Теперь, зачем ref-лог нужен?
+Now, why do we need reflog?
 
 0:03:04.020,0:03:06.960
-В этом выпуске мы рассмотрим два способа его использования.
+In this issue we are going to see 2 ways of using it.
 
 0:03:07.540,0:03:14.220
-Во-первых, если мы, к примеру, удалили ветку feature неделю назад и уже не помним какие идентификаторы там были,
+Forstly, if we, for example, have deleted the "feature" branch a week ago and dont remember what identifiers were there,
 
 0:03:14.260,0:03:19.900
-но нам понадобились какие-то коммиты из неё, то обычная команда git log их уже, конечно, не выведет.
+but we needed some commits from it, then the usual git log command will not show it to us.
 
 0:03:20.160,0:03:22.820
-Они стали недостижимы: ветки feature больше нет.
+They've become unreachable as there's no feature branch any more.
 
 0:03:23.200,0:03:28.140
-Но, так как когда-то HEAD стоял на этих коммитах, то по ref-логу мы можем их найти.
+But as HEAD was pointing to these commits some time ago we can use reflog to find them.
 
 0:03:28.580,0:03:34.200
-К примеру, мы ищем функцию work, которая разрабатывалась в этой ветке, - и вот последний коммит на эту тему.
+For example we are looking for the "work" function that was developed in this branch. And heres a latest commit on that.
 
 0:03:34.840,0:03:38.420
-Также можно ориентироваться по последнему чекауту с ветки feature.
+We can also find our way by the last checkout from the branch "feature".
 
 0:03:38.420,0:03:41.480
-Видите, здесь мы последний раз перешли с feature на master.
+You see, heres when we switched from feature to master for the last time.
 
 0:03:41.920,0:03:49.500
-В записи ref-лога слева указывается коммит, на который мы перешли. То есть, в нашем случае это на тот момент вершина master.
+In the reflog entries the commit to which we've switched is shown on the right. In our case at that moment its the tip of the "master".
 
 0:03:49.880,0:03:54.280
-Ну а коммит, на котором мы были до этого - то есть, старая вершина feature - находится ниже.
+And the commit that we've been at before, the old tip of the "feature" is below.
 
 0:03:54.680,0:03:56.220
-Давайте восстановим эту ветку.
+Lets restore this branch.
 
 0:03:56.500,0:04:01.640
-Для обращения к записям из ref-лога можно использовать фигурные скобки - ровно как здесь написано.
+To address the reflog notes one can use the braces, same as its here.
 
 0:04:02.020,0:04:05.280
-То есть, "HEAD", "@" и порядковый номер записи.
+i.e. "HEAD" "@" and the number of the entry.
 
 0:04:05.420,0:04:10.400
-Такой синтаксис возьмет из ref-лога шестую запись и подставит сюда соответствующий идентификатор.
+This syntax will get the sixth entry from the reflog and put the corresponding identifier in it.
 
 0:04:11.120,0:04:16.860
-Под windows в powershell "@" является специальным символом, поэтому понадобится обернуть это в кавычки.
+In windows in powershell "@" is a special symbol, therefore we have to wrap it in a quotes.
 
 0:04:17.360,0:04:21.780
-Ну а под остальными оболочками сработает и так. Готово, ветка пересоздана.
+But it will work fine in the other shells, just like that. Done, the branch is restored.
 
 0:04:22.300,0:04:25.800
-Замечу, что у команды git reflog есть ряд дополнительных аргументов.
+Lets note that the "git reflog" command has a number of additional arguements.
 
 0:04:26.020,0:04:28.020
-Вы можете посмотреть о них в документации.
+You can check them in the documentation.
 
 0:04:28.340,0:04:34.480
-Обычный вызов подразумевает "show", то есть, показ ref-лога - и это то, что нужно в 90% случаев.
+The normal call assumes "show", as showing reflog is whats needed in 90% of the cases.
 
 0:04:35.100,0:04:40.400
-Но можно также удалять записи из ref-лога, перезаписывать ref-логи, проверять их наличие и так далее.
+But one can delete the entries from the reflog, rewrite the reflogs and check their availability and so on.
 
 0:04:40.680,0:04:50.220
-Так вот, обычный вызов git reflog - это то же самое, что git reflog show - является алиасом для команды git log --oneline -g.
+So the usual "git reflog" call is the same as "git reflog show" which is an alias of the "git log --oneline -g" command.
 
 0:04:50.220,0:04:57.680
-Который как раз и переводит git log в особый режим работы, при котором он выводит коммиты не из ветки, как обычно, а из ref-лога.
+Which is,actually turns reflog into a special mode in which it prints the commits from the reflog and not from the branch itself.
 
 0:04:58.060,0:05:00.260
-Вот, видите, - вывод совершенно такой же,
+You see, the output is exactly same,
 
 0:05:00.320,0:05:05.160
-поскольку эта команда в точности и есть то же самое, что простой вызов git reflog, только длиннее.
+as the command is exactly the same as just calling the "git reflog", just longer.
 
 0:05:05.560,0:05:09.960
-Соответственно, многие параметры команды git log применимы и к reflog.
+By that many parameters of the "git log" command is applicable to the reflog.
 
 0:05:10.280,0:05:13.300
-Более подробно мы рассмотрим их в выпуске, посвященном git log.
+We'll have a look at it in more details in the "git log" command video.
 
 0:05:13.580,0:05:19.240
-Ну а здесь воспользуемся одним из них, а именно --date, чтобы добавить к ref-логу вывод даты.
+And here we'll just use one of them, namely --date, to add date output to the reflog.
 
 0:05:19.580,0:05:25.520
-Это сделает поиск по ref-логу более удобным, если мы примерно помним, когда было сделано интересующее нас изменение.
+This will make the search in the reflog more convenient, as we approximately remember when the changes we are interested in was made.
 
 0:05:25.840,0:05:28.780
-В качестве формата даты выберем стандартный - iso.
+As a date format lets take the default iso format.
 
 0:05:29.200,0:05:33.560
-Более подробно о форматах дат можно также посмотреть в отдельном тематическом выпуске.
+For more information on the date formats you can watch a date format dedicated issue.
 
 0:05:34.180,0:05:40.500
-И вот, видно, какая запись в ref-логе когда сделана. Теперь гораздо проще найти изменения, которые были неделю назад.
+And its easy to see the add time of every entry. Now its easier to find the changes that were done a week ago.
 
 0:05:40.900,0:05:45.320
-Для обращения к записям вместо номера в фигурных скобках я также могу указывать дату.
+To referr to the entries, I can use date instead of the number in the braces.
 
-0:05:45.540,0:05:48.820
-Cкажем если удалена feature, то, чтобы ее пересоздать, я могу использовать аналогично предыдущему
-
-0:05:48.940,0:05:55.420
-то чтобы ее пересоздать я могу использовать аналогично предыдущему обращение через reflog HEAD@,
+0:05:45.540,0:05:55.420
+Lets say if the feature was deleted, to restore it I can use the as I've done previously "git reflog HEAD@"
+Cкажем если удалена feature, то, чтобы ее пересоздать, я могу использовать аналогично предыдущему reflog HEAD@,
 
 0:05:55.440,0:06:01.720
-но вместо порядкового номера, как раньше (6), я могу указать дату. В данном случае вот эту.
+but instead of the number (6) as we've done before, I can use the date. In this case this one.
 
 0:06:02.360,0:06:08.760
-Обратим внимание, в дате пробел, поэтому я заключу ее в кавычки, чтобы Git воспринимал ее как единое целое.
+Lets note the space in the date, therefore Im going to put it into quotes, so that git understood it as a whole.
 
 0:06:09.320,0:06:10.240
-Готово.
+Done.
 
 0:06:11.080,0:06:17.980
-Здесь важно понимать, что такое обращение идёт через ref-лог, то есть в ref-логе ищется запись для HEAD с такой датой.
+Here its important to understand that such a call is performed through the reflog, so we are looking for the entries
+in the reflog with this date.
 
 0:06:18.100,0:06:24.500
-А если точно такой даты нет, то с более старой максимально приближенной и берется соответствующий идентификатор коммита.
+If theres noone with this exact date, then the older one that is closest to the one mentioned is used and its commit identifier is taken.
 
 0:06:25.040,0:06:28.760
-Чтобы это работало, недостаточно, чтобы коммит просто был в Git.
+For it to work its not enough for the git commit to be in git.
 
 0:06:29.120,0:06:34.160
-Должна быть еще запись в ref-логе с нужным номером или, в данном случае, с подходящей датой.
+There should also be an entry in the reflog with the right number or in this case with the matching date.
 
 0:06:34.480,0:06:36.940
-И мы приходим к следующему важному моменту.
+And we are getting to the next important moment.
 
 0:06:37.220,0:06:39.760
-По умолчанию ref-логи растут не бесконечно.
+By default reflogs are not growing unlimitedly.
 
 0:06:40.060,0:06:45.560
-Обычно запись хранится 90 дней, а если коммит стал недостижимым - тогда только 30.
+Most of the time the entry is stored for 90 days and if commit is unreachable - 30.
 
 0:06:45.780,0:06:50.380
-Так что с момента, когда мы побывали на коммите, у нас есть как минимум 30 дней,
+So from the moment when we were on the commit we have at least 30 days,
 
 0:06:50.380,0:06:53.300
-в течение которых эта запись точно хранится в ref-логе.
+when we can be sure that this entry is in the reflog for sure.
 
 0:06:53.600,0:06:55.820
+And the commit itself will be in the base.
 И сам коммит, соответственно, будет в базе.
 
 0:06:56.300,0:07:00.900
-Указанные параметры конфигурации можно и поменять, но обычно их оставляют по умолчанию.
+The forementioned configuration parameters can be changed, but usually they are left as is.
 
 0:07:01.420,0:07:07.720
-Итак, только что мы рассмотрели использование ref-лога для восстановления данных, то есть поиска потерянных коммитов.
+So, we've just have a look at the reflog usage for restoring the data, namely for finding the lost commits.
 
 0:07:08.120,0:07:11.540
-Это очень важная область применения не только при удалении веток,
+This is a very important knowledge not only for the deleted branches,
 
 0:07:11.540,0:07:15.900
-но и при ряде других потенциально опасных операций, которые мы изучим в будущем.
+but for a number of other potentially dangerous operations, that we are going to learn in future.
 
 0:07:16.360,0:07:23.040
-Есть и еще один способ обратиться к ref-логу, который на практике используется очень часто, обычно в совокупности с git checkout.
+There is one more way to get to the reflog, that is used in practice very often, usually together with the "git checkout".
 
 0:07:23.120,0:07:27.000
-И выглядит он так. То есть, "@" и отрицательное число.
+It looks like that. So its "@" and a negative number.
 
 0:07:27.480,0:07:31.820
-Такая запись означает предыдущую ветку, с которой был чекаут на данную.
+This means the previous branch from which we've made the checkout to this one.
 
 0:07:31.980,0:07:38.160
-То есть такая команда checkout фактически возвращает нас обратно на предыдущую ветку, с которой мы ушли на master.
+So this checkout command is getting us back to the previous branch, from which we've switched to master.
 
 0:07:38.480,0:07:41.560
-Что забавно, в нашей ситуации сейчас это не сработает.
+Its fun that in our case its not going to work now.
 
 0:07:41.860,0:07:43.020
-Видите, ошибка.
+You see, an error!
 
 0:07:43.280,0:07:47.680
-Когда я писал этот скринкаст, я сначала очень удивился, а потом уже понял, в чем дело.
+When I was recording this screencast I was surprised at first, but then I've figured it out.
 
 0:07:47.900,0:07:51.120
-Наверняка, если вы подумаете, то также легко догадаетесь.
+Most likely if you think of it you'll figure it out too.
 
 0:07:51.560,0:07:53.920
-Но для наглядности проведём небольшое исследование.
+But lets make a small investigation to show what've happened.
 
 0:07:54.100,0:07:58.800
-Как эта команда узнает на какой ветке мы были? Да очень просто, никакой чёрной магии.
+How does this command know on which branch were we? Very simple, no black magic involved.
 
 0:07:59.040,0:08:06.360
-Для этого она смотрит ref-лог для HEAD - чекаут же HEAD переключает - и ищет буквально там слово "checkout".
+For that it checks the reflog for "HEAD" - checkout is switching the "HEAD" and looks namely for the "checkout" word there.
 
 0:08:06.760,0:08:11.920
-Для наглядности добавлю флаг --no-decorate, который уберет показ ссылок дополнительных.
+Lets illustrate this by adding the "--no-decorate" flag that will remove the additional links from the output.
 
 0:08:12.220,0:08:16.800
-И оно сверху ищет последний чекаут на текущую ветку... Вот он.
+And it looks from the latest checkout from above ... here it is.
 
 0:08:17.300,0:08:21.240
-И в этой строке смотрит откуда мы чекаутились... С fix.
+And in this line it checks from where the checkout was done. From "fix".
 
 0:08:21.700,0:08:27.700
-Значит, переключиться надо на неё, но ветка fix-то была удалена, ее нет - поэтому ошибка.
+So we need to switch to it, but the "fix" branch was removed, its not there any more, therefore we have the error.
 
 0:08:28.100,0:08:33.760
-Если указать другое отрицательное число, то Git отступит на указанное количество чекаутов назад.
+If we put in another negative number git will get back to the specified number of checkouts.
 
 0:08:34.080,0:08:37.760
-Например, если отступить на третий чекаут, то он сделан с feature.
+For example if we move back to third checkout it was performed from the "feature".
 
 0:08:39.220,0:08:40.780
-И, видите, мы переключились.
+And as you see, we've switched.
 
 0:08:41.720,0:08:44.800
-Это, конечно, экзотика, обычно используется -1.
+This is of course a very exotic use as -1 is used most of the time.
 
 0:08:44.860,0:08:51.200
-Теперь она сработала, потому что мы только что сделали другой чекаут, и, в настоящий момент предыдущей веткой перед feature была master.
+Now it worked, because we've just made another checkout and currently the previous branch before "feature" was "master".
 
 0:08:51.600,0:08:53.160
-И можно еще переключиться...
+And we can siwth one again.
 
 0:08:53.260,0:08:58.400
-Теперь уже предыдущая ветка - feature, и так далее. Такие вызовы будут чередовать master и feature.
+Now the previous branch is feature and so on. This calls will siwtch between the master and the feature.
 
 0:08:59.160,0:09:05.260
-Многие команды Git понимают еще более сокращенный вариант такого синтаксиса: вот так, просто "-".
+Many git commands know a shorter version of this syntax, just like that "-".
 
 0:09:05.660,0:09:09.400
-Но не все. Для тех, которые не умеют, нужно использовать полную запись.
+but not all of them. For those that dont we have to write it all.
