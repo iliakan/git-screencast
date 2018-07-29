@@ -1,0 +1,146 @@
+0:00:00.420,0:00:02.600
+So, lets go on with our development.
+
+0:00:02.940,0:00:08.060
+In this issue we'll have a look at the most typical thing one can do with two branches - merge them.
+
+0:00:08.580,0:00:12.440
+The "fix" branch was made previously to fix the mistakes of the "master" branch.
+
+0:00:12.740,0:00:14.560
+Now this fix is finished.
+
+0:00:14.780,0:00:19.580
+Im going to add the changes that we've made there in our main branch "master".
+
+0:00:19.960,0:00:25.360
+To make it, let's switch to it at first: "git checkout master".
+
+0:00:26.120,0:00:29.140
+We want to add changes from the "fix" branch here.
+
+0:00:29.640,0:00:35.480
+For that theres a "git merge" command in git, which does, as you've probably guessed, the merge.
+
+0:00:35.800,0:00:38.540
+This commands has a lot of possibilities and arguements.
+
+0:00:38.740,0:00:43.920
+Right now we are looking at the most basic way to use it, and we'll get to a more advanced ones later.
+
+0:00:44.220,0:00:48.860
+Specify from what branch the changes are to be added, in our case from the "fix".
+
+0:00:49.860,0:00:56.860
+Done. As we can see in the editor, changes that were done on in the "fix" are now in our "master" branch.
+
+0:00:57.220,0:01:00.780
+Lets read the output of the merge command, it describes what have happened.
+
+0:01:01.100,0:01:06.820
+For better visualisation, lets temporary revert the image on the right to the before the merge state.
+
+0:01:07.280,0:01:09.580
+The first lane shows what was merged with what.
+
+0:01:09.920,0:01:16.400
+This commit was the tip of the "master" branch and this commit was the last on the "fix" branch.
+
+0:01:16.800,0:01:21.200
+Next line contains the name of the algorithm, used to perform the merge.
+
+0:01:21.480,0:01:26.460
+Thats the way in which git will add changes from fix to master.
+
+0:01:26.920,0:01:31.320
+Fast forward is one of the very simple algorithms.
+
+0:01:31.620,0:01:37.960
+Its quite remarkable by the fact that it doesnt add the changes from fix to master, but the other way around,
+
+0:01:38.020,0:01:42.400
+master's pointer is moved so that it points to the same commit as fix does.
+
+0:01:42.860,0:01:47.060
+In other words, here was the "master" branch, how to add new changes from fix to it?
+
+0:01:47.440,0:01:52.820
+Just move the corresponding pointer forward, thats it, and the new commits are already in master.
+
+0:01:53.560,0:01:59.220
+As now master and fix are pointing to the same commit, see, Im making a checkout and nothing changes.
+
+0:02:00.160,0:02:05.700
+Lets assume that we have a sudden change of a heart as fix had some issues and we want to revert the master to its previous state.
+
+0:02:06.240,0:02:11.400
+No problem, git has a lot of ways to roll back the changes and make it exactly as it was.
+
+0:02:11.700,0:02:17.100
+In this case we can use the command that we've already seen: "git branch -f".
+
+0:02:17.400,0:02:19.880
+Lets use it to move the "master" branch back.
+
+0:02:20.740,0:02:26.680
+However, in real life we dont remember the commit identifier, at which the "master" branch was previously.
+
+0:02:27.040,0:02:29.680
+The commit identifiers are not something that people usually rememeber.
+
+0:02:30.020,0:02:32.800
+Fortunately, git has our back covered for this case.
+
+0:02:33.080,0:02:40.160
+The merge command before moving the branch writes the old identifier to the ".git/ORIG_HEAD" file.
+
+0:02:40.600,0:02:48.040
+And we can use it as a "git branch -f master ORIG_HEAD" - moves the master back to ORIG_HEAD.
+
+0:02:49.420,0:02:51.240
+Done, master was reverted.
+
+0:02:51.680,0:02:54.620
+We dont see any changes in the editor now.
+
+0:02:54.620,0:02:58.400
+Thats because we are on the "fix" branch and branch command have changed the "master" branch only.
+
+0:02:58.780,0:03:04.580
+But if we switch to it, then, really heres the previous state of the project. Everything as it was before.
+
+0:03:04.900,0:03:10.480
+Lets try to move the branch back: "git branch -f master", let it point to the same place as fix.
+
+0:03:10.980,0:03:14.800
+Error. Git branch cant move the branch at which we currently are.
+
+0:03:15.100,0:03:20.960
+We can leave it or use the "checkout" command for the move which is less picky.
+
+0:03:21.380,0:03:27.460
+I remind you that the "b" flag creates a branch with the name provided pointing to the current commit.
+
+0:03:27.480,0:03:30.120
+And then, when the branch is created it switches to it.
+
+0:03:30.640,0:03:33.860
+And if the branch already exists it's moved.
+
+0:03:35.080,0:03:39.900
+As Im in the "master" branch already, theres no switch only the branch was moved.
+
+0:03:40.440,0:03:43.680
+In the end we get the same result,
+
+0:03:43.680,0:03:47.640
+as after calling the "git merge" command, but you see, by using the "checkout" command.
+
+0:03:48.180,0:03:52.260
+This is, of course in this particular case, and mostly merge is a more powerfull command.
+
+0:03:52.560,0:03:57.020
+Here we only needed to move the branch to add the changes from the fix to the master.
+
+0:03:57.040,0:03:59.780
+A more complex case is going to be examined in one of the later issues.
