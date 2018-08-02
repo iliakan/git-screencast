@@ -1,0 +1,189 @@
+0:00:00.100,0:00:06.940
+In this screencast we have a repository visualization image on the right, showing its structure and all its commits.
+
+0:00:07.340,0:00:12.360
+To see it in a real life, one usually use visualisation utilities or "git log" command.
+
+0:00:12.880,0:00:16.360
+Executing... and heres a detailed information on every commit.
+
+0:00:16.700,0:00:20.540
+Let me use the "--oneline" flag to make the output more concise.
+
+0:00:20.840,0:00:23.840
+By default "git log" outputs the commits starting from "HEAD".
+По умолчанию git log выводит коммиты, начиная от HEAD.
+
+0:00:24.000,0:00:28.100
+But one can specify any other commit as id or a reference.
+
+0:00:28.360,0:00:33.780
+For example "git log master" displays the commits from the "master" branch, in our case these first three.
+
+0:00:34.680,0:00:41.220
+The "git log" command has many keys and features, which we are going to examine during the next several issues of our screencast.
+
+0:00:41.960,0:00:47.360
+When we know the commit we are interested in, we can have a look at it in more details, using the "git show" command.
+
+0:00:47.920,0:00:50.080
+The "HEAD" commit will be shown by default.
+
+0:00:50.300,0:00:54.740
+But one can provide any other as well, for example via the link to identifier.
+
+0:00:55.720,0:00:59.580
+As you see, here is a general commit info followed by the changes made.
+
+0:00:59.980,0:01:05.280
+Most of the time we are interested in commits that are one or two steps behind us,
+
+0:01:05.400,0:01:07.560
+or in some other link we are interested in.
+
+0:01:07.800,0:01:13.040
+To avoid dealing with identifiers, there is a special convenient syntax in git logs.
+
+0:01:13.820,0:01:19.060
+Its enough to add the "~" sign to get from any commit or link to its parent.
+
+0:01:19.620,0:01:22.340
+I mean like that ("git show HEAD~") - this is the commit,
+
+0:01:22.360,0:01:25.440
+the parent of a commit to which HEAD is pointing.
+
+0:01:26.060,0:01:29.300
+As you see, the output is the same as if we used the identifier.
+
+0:01:30.020,0:01:33.600
+If you put 2 tildes, then its its parent - so below.
+
+0:01:34.080,0:01:38.520
+Lets add a "--quiet" flag for brewity, so that it only show the information without the changes.
+
+0:01:40.000,0:01:43.700
+Three tildes is the commit below and so on.
+
+0:01:44.720,0:01:48.980
+Of course many tildes is not something one will write, therefore one can use a number to state number of tildes.
+
+0:01:49.160,0:01:52.500
+Three tildes is same as like that: "~3" - 3 commits behind.
+
+0:01:52.800,0:01:55.220
+Two tildes is same as like that "~2".
+
+0:01:55.500,0:01:59.800
+One doesnt mean anything, same as just a single tilde.
+
+0:02:00.220,0:02:04.960
+The word "HEAD" itself can be shortened by writing an atsign instead of it, like that "@".
+
+0:02:05.460,0:02:10.960
+Similar shorthand is used in git for "HEAD" only as "HEAD" is used way too often.
+
+0:02:11.580,0:02:16.980
+The only problem is that in windows powershell "@" - is a special symbol, therefore we need to wrap it into quotes.
+
+0:02:17.080,0:02:19.420
+But in the other shells it will work just fine as it is.
+
+0:02:19.840,0:02:25.340
+Also "HEAD" is not the only thing to which tilde can be added, but to any identifier or link to commit.
+
+0:02:25.520,0:02:30.920
+For example "master~" - one steps behind the "master", its same as 3 steps behind the "HEAD".
+
+0:02:32.100,0:02:38.040
+This output shows the difference between the files. But how can we check the whole files, not the changes only?
+
+0:02:38.980,0:02:44.680
+From previous issues we already know that "git checkout" command allows us to restore the file
+
+0:02:44.680,0:02:49.200
+at any commit time, e.g. say restore the index.html file of the parent commit.
+
+0:02:49.520,0:02:55.800
+But the result of this call will be the substitution of our current index.html file to its older version.
+
+0:02:56.000,0:03:00.980
+And this is not convenient, especially if we made any changes, as they will be removed.
+
+0:03:01.540,0:03:05.960
+And what if we dont want to change the current file, but want to see its old content instead?
+
+0:03:06.340,0:03:11.680
+"git show" can help us with that. For that after commit we have to specify a colon prefixed path.
+
+0:03:12.060,0:03:14.720
+Done, heres an index.html from the parent commit.
+
+0:03:15.400,0:03:18.500
+Of course we can specify any other commit or link.
+
+0:03:18.700,0:03:22.540
+E.g. lets have a look at the index.html in the corresponding peak of the "fix" branch.
+
+0:03:23.380,0:03:28.060
+And, finally lets have a look at the file version not from commit itself, but from the currently indexed version,
+
+0:03:28.060,0:03:31.820
+by adding a colon, but removing the commit in front of it, like that ":index.html".
+
+0:03:32.220,0:03:37.820
+This, of course, makes sense only in a case if the file version in the index differs to our current one.
+
+0:03:38.260,0:03:43.800
+This happens when we worked, indexed the changes and then changed something else in the file.
+
+0:03:44.040,0:03:49.980
+Like that we'll see the one that is in the index, I mean the version that will be saved with the next commit.
+
+0:03:50.820,0:03:55.600
+So, we had a look at the general history of the development same as previous versions of the files.
+
+0:03:55.860,0:03:59.780
+Also we got familiar with the access to the parent commits via tilde syntax.
+
+0:04:00.340,0:04:06.380
+There is another way to get access to commit, when we dont know its identifier( these are, actually, rarely remembered by anyone ),
+
+0:04:06.380,0:04:10.360
+but know that theres a word in description, like name of the function.
+
+0:04:10.820,0:04:15.440
+It looks like that: ":/" and thenthe thing we are looking for.
+
+0:04:16.140,0:04:21.300
+You can specify several words, by wrapping it all into quotes or regexp
+
+0:04:21.300,0:04:23.540
+But most of the time the specific word is being looked for.
+
+0:04:24.040,0:04:29.140
+By that git will find the latest commit with this word in its description, in our case here it is.
+
+0:04:29.620,0:04:32.100
+Lets note that this commit is not from the current branch.
+
+0:04:32.440,0:04:38.000
+For this syntax the branch doesn't matter, its just looking for the newest commit with this word in its description.
+
+0:04:38.260,0:04:41.380
+So this syntax was created to give access to the recent commits.
+
+0:04:41.620,0:04:45.500
+Of course this is not for the use in "git show" only, but in any other git command. 
+
+0:04:46.040,0:04:51.600
+But if you want to find all the commits with such a word in the description or interested in anything more complex,
+
+0:04:51.640,0:04:55.600
+lets say look for commits that are changing some file or a function in a file,
+
+0:04:55.640,0:04:59.700
+then its also possible, but by using different flags of the "git log" command.
+
+0:04:59.860,0:05:03.280
+You can learn about it in more details in the issue on this topic.
