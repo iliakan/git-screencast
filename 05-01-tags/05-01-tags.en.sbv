@@ -1,0 +1,132 @@
+0:00:05.890,0:00:10.469
+apart of branches git has another type of links to commits, the so-called tags.
+
+0:00:10.960,0:00:15.989
+Its easy to create one: "git tag tagname", for example like that
+
+0:00:16.480,0:00:21.270
+and commit to which tag should point, its "HEAD" by default, lets use this one.
+
+0:00:22.000,0:00:28.410
+I can use tag, instead of commit identifier after its created, e.g. "git show --quiet tagname" like that. 
+
+0:00:29.289,0:00:33.869
+also as tag is a link to commit you can see it in the "git log" output
+
+0:00:34.360,0:00:40.589
+the difference between the branch and tag is that tag is just a label and its not going to move anywhere and always pointing to the same commit.
+
+0:00:40.719,0:00:47.879
+so if we make a commit, while being in a branch, the corresponding link will move, as we saw it earlier.
+
+0:00:48.190,0:00:55.500
+Tag is way more simple, once created it always points to the commit, so its just a label with no complex mechanics behind the scenes.
+
+0:00:55.870,0:00:57.870
+The most often usage is
+
+0:00:57.989,0:00:58.930
+release labling
+
+0:00:58.930,0:01:03.689
+for example, we want to point that with this commit we released this version
+
+0:01:03.820,0:01:09.389
+Also, its very convenient and important, that tag, unlike the branch, is not moving anywhere with commits made.
+
+0:01:09.520,0:01:16.170
+The point that this commit is associated with some version released is final and we note exactly this fact.
+
+0:01:16.869,0:01:22.829
+Later on we can get back to it, if we want to and create a separate branch for the changes of 1.x version
+
+0:01:23.140,0:01:26.820
+that is initially going to point to the same commit as tag does and
+
+0:01:27.040,0:01:33.809
+continue the development there. But in any case, nothing can change the fact that this commit has release 1.0.0 and
+
+0:01:34.180,0:01:36.419
+future releases are going to have their tags.
+
+0:01:37.119,0:01:40.828
+use the "git tag" command to see a list of tags.
+
+0:01:41.950,0:01:49.619
+There are additional parameters, filters, e.g. I want to see which releases are having the commit Im interested in, this one.
+
+0:01:50.560,0:01:52.119
+This release only.
+
+0:01:52.119,0:01:55.019
+Also one can add the "-n" flag to print
+
+0:01:55.270,0:02:02.579
+the commit message to which tag is pointing and the number of lines of this message, that should be printed( one line by default ),
+
+0:02:02.740,0:02:04.740
+most if the time its enough.
+
+0:02:05.170,0:02:07.170
+And here are our tags with messages
+
+0:02:07.240,0:02:12.569
+further if Im interested in details I can check it using "git show" or "git log",
+
+0:02:12.760,0:02:16.289
+print the history of development, starting with the current tag and so on.
+
+0:02:17.020,0:02:24.359
+If you have plenty of tags output can be limited. E.g. project has many versions and Im only interested in the ones that are starting with
+
+0:02:24.730,0:02:32.310
+"1.1". For that I add "-l" and the corresponding mask. For now I only have one such version, I may have more later.
+
+0:02:33.040,0:02:35.370
+More filters can be found in the documentation.
+
+0:02:35.890,0:02:42.419
+Tags can be of two kinds: first - the ones called lightweight tags,
+that are links to commits.
+
+0:02:42.730,0:02:48.390
+second - tags with annotation. Previously we used the lightweight tags only, let me remove them now.
+
+0:02:49.030,0:02:53.130
+for that "-d" and further the name of the tags, that I want to remove.
+
+0:02:54.610,0:03:00.479
+Done. To create an annotated tag "-a" flag is used and the rest is the same.
+
+0:03:01.900,0:03:08.580
+If we run it now, editor will open in which we should write the description of the tag or we can use the "-m" flag
+
+0:03:08.800,0:03:12.359
+exactly as we do for commit, right in the command line.
+
+0:03:13.239,0:03:18.209
+I will create one more tag, let it point exactly where master branch is pointing now.
+
+0:03:19.720,0:03:27.239
+The main difference between the annotated tag is that it has the information, so its not a bare label, but a label with
+
+0:03:27.489,0:03:32.879
+the message. As we saw above also storing the information on who and made it and when it was made.
+
+0:03:33.459,0:03:40.379
+So in our case the one who decided to release this exact commit, which might be quite important.
+
+0:03:40.720,0:03:42.239
+To demonstrate it
+
+0:03:42.239,0:03:46.078
+Im going to call "git show" with our new, annotated tag and
+
+0:03:46.840,0:03:52.709
+you see, unlike the lightweight tag we have an information of who have created this tag, when was it created, who created it and
+
+0:03:52.930,0:03:58.049
+of course, the description and then the commit as annotated tags are more
+
+0:03:58.329,0:04:01.649
+informative in most cases it is recommended to use it.
