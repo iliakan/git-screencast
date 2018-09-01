@@ -1,0 +1,170 @@
+0:00:00.579,0:00:02.409
+Sometimes bugs in our code are being unnoticed for a while.
+
+0:00:02.409,0:00:07.319
+And we only notice them when code is already committed.
+
+0:00:07.540,0:00:14.790
+That would be nice to cancel the last commit or even several last commits and make some fixes. For that "git reset" command is usually used.
+
+0:00:15.009,0:00:22.469
+We give it the commit to which we want to revert. We can use an identifier, but most of the time we want to get one
+
+0:00:22.810,0:00:26.640
+or several commits back. As you remember we have to use tilde "~" to get a parent,
+
+0:00:27.430,0:00:32.610
+and "HEAD" can be referred to with an "@" sign. So "@~" - is a parent of the current commit. 
+
+0:00:34.329,0:00:41.069
+The "reset" command has several flags with which you can call it. Lets have a look at "hard" at first as it is the easiest, so-called hard reset.
+
+0:00:41.230,0:00:47.969
+Once ran it moves the current branch to the commit provided. Lets change "@~""
+
+0:00:48.430,0:00:53.520
+to this identifier, actual parent of the "HEAD".
+
+0:00:54.340,0:01:00.059
+Updates the working directory together with index so that they correspond to the state of the project at the moment of commit.
+
+0:01:00.609,0:01:04.109
+Running! Done! We rolled back to the previous commit.
+
+0:01:04.540,0:01:11.609
+"master" now points here and you, probably, could notice the "index.html" got updated in the editor. Now working directory
+
+0:01:11.740,0:01:18.479
+has a previous version. And if I type "git status" we see the clean status, which means that the working directory
+
+0:01:18.970,0:01:26.339
+and index correspond to each other and the current and therefore older state of the repository. Like if we didnt make the last commit at all.
+
+0:01:27.310,0:01:31.920
+Now if I want to continue the development and add some changes and
+
+0:01:32.860,0:01:34.479
+commit.
+
+0:01:34.479,0:01:39.479
+Note, the parent of the new commit will be the "HEAD" or the current tip of the "master".
+
+0:01:39.850,0:01:42.869
+As you see its shown at the right.
+
+0:01:43.090,0:01:50.729
+Now new HEAD is our last commit. And the further development in the master will be on top of it. And our old commit is not used any more.
+
+0:01:51.040,0:01:56.819
+In our case its not a part of any branch. It is unreachable
+
+0:01:57.040,0:02:00.779
+from any branch and therefore will be develed from the database after some time, so we'll have something like this.
+
+0:02:01.420,0:02:07.530
+So we can use "git reset" to completely cancel the last commit and now I made another commit in its place.
+
+0:02:07.989,0:02:15.979
+From the other side, life can bring us surprises. Its possible, that we made a reset and then recalled something and we want to get our old commit back.
+
+0:02:16.349,0:02:20.839
+Furtunately enough git doesnt delete commits right away, so we can get our commit back.
+
+0:02:21.450,0:02:28.700
+For that Im going to run "git reset" once again and give it that commit that master had previously, this one.
+
+0:02:29.220,0:02:33.259
+Of course, in real life you dont know the id of this commit or have forgotten it already.
+
+0:02:33.569,0:02:40.878
+"git log" will not show it as its unreacheable. And we dont have our image with the repository structure in a real life.
+
+0:02:41.010,0:02:47.840
+Instead we have a "git reflog" command. "git reflog master" - contains all the previous values of "master". Therefore we can find this commit.
+
+0:02:48.299,0:02:52.459
+Or theres one more option. When "git reset" is moving the branch
+
+0:02:52.920,0:02:57.559
+it writes the previous value of the "HEAD" into the ".git" directory in the "ORIG_HEAD" file.
+
+0:02:58.200,0:03:05.179
+And we can use it as a reference. So "git reset" and "ORIG_HEAD". will turn everything as it was.
+
+0:03:07.290,0:03:13.849
+Dont! "master" is now pointing to the same place as it used to. In the working directory index now is same as it used to be before the last reset.
+
+0:03:14.280,0:03:19.250
+The only difference is that git database has another unreacheable commit. The one that we've just made.
+
+0:03:19.709,0:03:23.689
+Its being pointed by "ORIG_HEAD" as we've just left it.
+
+0:03:24.510,0:03:31.190
+I want to note that "ORIG_HEAD" - its such a second grade link. From one side we can use it in the commands, from the other side
+
+0:03:31.380,0:03:33.380
+git saves it just in case.
+
+0:03:34.019,0:03:41.479
+It doesnt use it inside itself. So it doesnt influence on if commit is reacheable or garbage collection. So its just for the convenience it gives.
+
+0:03:41.730,0:03:46.280
+Later we'll have a look at the other links of this kind, something underscore "HEAD"
+
+0:03:46.500,0:03:51.169
+that are used by the other git commands. All these links have no influence on the garbage collection.
+
+0:03:51.840,0:03:56.239
+The orphaned commit will be removed from the database after a while and the structure will become same as it used to be.
+
+0:03:56.970,0:04:00.589
+So, we've just got one commit back and reverted to initial state.
+
+0:04:00.959,0:04:02.790
+By default the data,
+
+0:04:02.790,0:04:09.500
+about the unreacheable commits is stored in the reflog, and therefore in the database for at least 30 days. During this time you can jump back and forth.
+
+0:04:09.980,0:04:14.599
+Anywhere, so that "git reset" command can be reverted with one exception.
+
+0:04:15.560,0:04:19.820
+If files changes were not committed, then they will be removed after the "git reset".
+
+0:04:20.420,0:04:26.480
+Files will just be substituted with the ones which were in the repository at commit time.
+
+0:04:26.880,0:04:29.880
+If you want to save your uncommitted changes,
+
+0:04:30.210,0:04:37.849
+we'll learn the "git reset" with the "keep" flag or we can use "git stash". But if our goal is to roll the last change back
+
+0:04:38.150,0:04:40.879
+then, probably this behavior is more of a pro, than a con.
+
+0:04:41.280,0:04:47.719
+This pecularity of "reset" command is sometimes used to clear the local directory index of uncommitted changes.
+
+0:04:48.270,0:04:50.270
+For example, I did something with the files,
+
+0:04:50.939,0:04:56.689
+experimented, maybe even added some changes to the index, but I dont like them and I want to revert everything as it was.
+
+0:04:57.569,0:05:03.378
+Running "git reset --hard". If commit is not set, it assumes the current commit which is "HEAD".
+
+0:05:03.629,0:05:08.449
+By thing branch will not be moved anywhere, but the files and the index will be restored from the repository.
+
+0:05:09.840,0:05:17.600
+Dont! Status is clean again. Uncommitted changes were removed from both the inedx and the working directory. They're gone.
+
+0:05:17.940,0:05:19.760
+So, what did we see in this video
+
+0:05:20.009,0:05:26.359
+hard "reset" is mostly used to completely change the last commits and to remove the uncommitted changes.
