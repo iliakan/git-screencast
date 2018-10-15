@@ -1,0 +1,252 @@
+0:00:00.279,0:00:05.218
+Previously we only dealt with adding the files to the project. Lets have a look at deletion.
+
+0:00:05.620,0:00:09.929
+Now I`m in one of the previous states of the project and will delete the ".gitignore" 
+
+0:00:10.389,0:00:16.049
+The ".idea" was added here to ignore the Webstorm service files.
+
+0:00:16.330,0:00:22.020
+But ignoring it here is not exactly right as it should be ignored via some global ignore file,
+
+0:00:22.570,0:00:27.150
+as editor choice is a personal preference and it`s not related to this project at all.
+
+0:00:27.540,0:00:32.460
+If I have other project somewhere then ".idea" should be ignored there too.
+
+0:00:32.680,0:00:35.520
+As you see, this should definitely be a global-level setting.
+
+0:00:35.520,0:00:42.020
+So let me set the global ignore file, open it in the editor and put it there.
+
+0:00:42.120,0:00:49.280
+Closing, getting back to the project. Now I dont need the local ".gitignore", so Im deleting it.
+
+0:00:50.700,0:00:52.700
+Lets "git status" it.
+
+0:00:52.810,0:00:57.510
+I remind you that index stores the list of all project files that are tracked by Git.
+
+0:00:57.880,0:01:03.359
+We have a file missing now and it is present in the index, so "git status" has noticed it.
+
+0:01:04.860,0:01:12.380
+To save this change in the repository, we have to add it to the index first. Lets use "git add" for that.
+
+0:01:13.480,0:01:17.640
+Its a little bit funny as theres no ".gitignore" file any more.
+
+0:01:18.040,0:01:23.580
+So "git add" is actually adding the fact of its deletion to the index, or looking at it from the technical perspective
+
+0:01:23.770,0:01:29.490
+it just deletes ".gitignore" from the list of the indexed files. Now if I execute "git status",
+
+0:01:30.040,0:01:34.859
+we see the changes moved from "not staged for commit"
+
+0:01:35.520,0:01:42.080
+to "to be committed". So the change is in the index and now we can finally save it in our repository.
+
+0:01:42.320,0:01:46.160
+"git commit -m Cleanup"
+
+0:01:46.160,0:01:51.000
+As the message here consists of one word only, we dont need quotes. Please note: a little peculiarity of the image.
+
+0:01:51.000,0:01:59.720
+This file is still in the repository as repository stores the history of all the changes.
+
+0:01:59.980,0:02:04.920
+Just this particular illustration shows the last state of the repository.
+
+0:02:05.140,0:02:10.440
+And things that were, they are somewhere behind it. We'll have a look on how to get access to it later on.
+
+0:02:11.040,0:02:17.160
+To remove the fiels from git there is also a "git rm" command. Here we show one or multiple ways.
+
+0:02:17.800,0:02:25.300
+If we point to a directory we need the "-r" flag. E.g. like that to delete the "src" directory.
+
+0:02:25.680,0:02:29.920
+This command makes in one step things we did in two.
+
+0:02:30.300,0:02:35.120
+Namely it deletes from the work directory and adds the change to the index.
+
+0:02:35.620,0:02:38.459
+"git rm" - same as just deleting
+
+0:02:39.880,0:02:44.699
+and "git add", so the state of the project is like that if I run it
+
+0:02:45.780,0:02:52.820
+We saw a usual deletion already, so let me run it in another way, with a "--cached" flag.
+
+0:02:53.400,0:03:00.560
+It will delete from the index, but keep in the working directory. Now the state of the project became like that.
+
+0:03:01.180,0:03:06.860
+Please, note, if I type "git status" then you see that the "src" directory remains,
+
+0:03:06.860,0:03:13.980
+because we used the "--cached" flag. But it is "untracked" now. So git doesnt track it. Its not in the index any more.
+
+0:03:14.140,0:03:23.340
+To add it back to the index: "git add src". Executing... Oh, snap! The changes are not in the working directory again.
+
+0:03:23.820,0:03:27.300
+In the index in the current state of the repository files are same.
+
+0:03:27.440,0:03:34.479
+We used the "git rm --cached" command to delete "script.js" from the index first and then "git add" to get it back.
+
+0:03:34.820,0:03:36.820
+So there are no changes.
+
+0:03:37.070,0:03:44.469
+In real life "rm --cached" is used to files which are to be kept in the working directory,
+
+0:03:44.840,0:03:46.989
+but not in the git.
+
+0:03:47.450,0:03:53.350
+For example, because these files are editor related and were added accidentally. For that after deletion they are added into ".gitignore".
+
+0:03:54.320,0:03:58.820
+Lets note that "--cached" flag is used in some other git commands.
+
+0:03:58.900,0:04:03.560
+Its main idea is that the operation is only done with the index and the working directory remains the same.
+
+0:04:05.090,0:04:11.950
+Id like to draw your attention to one more aspect of the "rm" command, the one that is actually inherent by many other git commands.
+
+0:04:12.820,0:04:19.660
+Git tries to be on the safe side, so that if I have some changes and I didnt save these changes to the repository yet,
+
+0:04:19.840,0:04:24.320
+then the attempt to remove such a file "git rm" will lead to an error.
+
+0:04:24.580,0:04:30.240
+Git complains because if you delete now then the unsaved changes will just fade away.
+
+0:04:30.770,0:04:38.079
+They were not saved into the repository, so that git will not help to restore them if it occures that we have accidentally deleted them,
+
+0:04:38.720,0:04:41.470
+and by this it draws our attention to it.
+
+0:04:42.260,0:04:48.820
+If we really want to delete such a file we have to use one more common flag: "-f".
+
+0:04:48.820,0:04:55.940
+This flag exists in many git commands. It allows to ignore the warnings and make git to actually execute the command.
+
+0:04:56.200,0:05:02.860
+So that if I run it now, then "index.html" will be deleted from the working directory and from the index.
+
+0:05:04.040,0:05:08.680
+So we had a look at the ways to add the files and remove the files from the repository.
+
+0:05:09.350,0:05:15.339
+Rename remains. Its the easiest, as from the gits perspective there is no renaming at all.
+
+0:05:16.260,0:05:20.020
+E.g lets take the "index.html" and rename it to "hello.html".
+
+0:05:20.640,0:05:24.140
+Now if I type "git status" I see 2 changes.
+
+0:05:24.820,0:05:33.720
+First: the old "index.html" file was deleted. Second: new named "hello.html" have been added.
+
+0:05:33.720,0:05:41.060
+So git percepts renaming as the aggregation of two commands: deletion of the old file and creation of the new one. 
+
+0:05:41.380,0:05:48.560
+Now lets add both of these changes to the index: "git add ."
+And run the "git status" again.
+
+0:05:49.120,0:05:52.080
+Now "git status" already sees that there was a rename.
+
+0:05:52.900,0:05:57.689
+Why could not git understand it previously, when we called the "git status"?
+
+0:05:58.540,0:06:03.629
+Thats because at the moment of "git status" call "hello.html" file was not known yet.
+
+0:06:03.880,0:06:08.939
+Git didnt know whats inside there and therefore could not understand that its one and the same file.
+
+0:06:09.070,0:06:13.650
+And when we add the file into the index, git writes it in its inner storage
+
+0:06:13.900,0:06:20.789
+calculates the control summ and can understand that it has this file already and show this nice message.
+
+0:06:21.880,0:06:26.670
+Therefore if I make "git commit" now this change will be written into the repository.
+
+0:06:27.310,0:06:31.110
+As with "rm" in git there is a special command "git mv",
+
+0:06:31.510,0:06:38.039
+that allows to make these two operations at once e.g. "git mv index.html hello.html".
+
+0:06:38.770,0:06:43.829
+Simultaneously renamed the file in the work directory and added the information to the index about it.
+
+0:06:45.010,0:06:50.069
+So, in this issue we had a look at how the deletion and renaming is handled in git.
+
+0:06:50.680,0:06:56.700
+The main conclusion is the following: deletion and renaming doesnt need any special commands.
+
+0:06:56.700,0:07:01.040
+One can just make it in the working directory and add the change via "git add".
+
+0:07:01.200,0:07:05.909
+And everything will just work fine. But there are commands for your convenience.
+
+0:07:06.580,0:07:13.199
+"git rm" deletes the files from the working directory and from the index. Therefore its a summation of the usual deletion from the disk
+
+0:07:13.450,0:07:15.929
+and adding the information on it to the index.
+
+0:07:16.900,0:07:20.400
+The most common flag is probably "-r" for deleting the directories.
+
+0:07:20.950,0:07:25.979
+"-f" -  for deleting the files with changes, that were not saved into the repository.
+
+0:07:26.320,0:07:29.810
+You have to keep in mind that all the unsaved changes will be lost,
+
+0:07:30.020,0:07:38.080
+as we didnt save the changes to git and we cant get them out of it later. So if we want to be able to rollback the deletion later
+
+0:07:38.080,0:07:42.080
+we should commit the changes first and then delete the file.
+
+0:07:43.020,0:07:46.009
+And "--cached" will only delete from the index.
+
+0:07:46.220,0:07:51.480
+This flag is used when we want to remove the file from the repository but keep it in the working directory,
+
+0:07:51.480,0:07:55.940
+e.g if we know we will need it for something later on.
+
+0:07:55.940,0:08:01.060
+"git mv" command works in the similar way. It renames in the working directory and
+
+0:08:01.320,0:08:05.320
+adds the information to the index.
